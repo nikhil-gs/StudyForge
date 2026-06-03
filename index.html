@@ -864,66 +864,110 @@
       return prompts[type];
     }
 
-    async function callAPI(provider, key, prompt) {
-      if (provider === 'groq') {
-        var res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + key
-          },
-          body: JSON.stringify({
-            model: 'llama-3.1-8b-instant',
-            messages: [{
-              role: 'user',
-              content: prompt
-            }],
-            max_tokens: 8192
-          })
-        });
-        var data = await res.json();
-        if (!res.ok) throw new Error(data.error ? data.error.message : 'Groq error');
-        return data.choices[0].message.content;
-      } else if (provider === 'gemini') {
-        var res = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=' + key, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            contents: [{
-              parts: [{
-                text: prompt
-              }]
-            }],
-            generationConfig: {
-              maxOutputTokens: 8192
+    async function callAPI(provider, key, prompt, retryCount) {
+      retryCount = retryCount || 0;
+      var maxRetries = 2;
+
+      try {
+        if (provider === 'groq') {
+          var res = await fetch('https://api.groq.com/openai/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer ' + key
+            },
+            body: JSON.stringify({
+              model: 'llama-3.1-8b-instant',
+              messages: [{
+                role: 'user',
+                content: prompt
+              }],
+              max_tokens: 4096
+            })
+          });
+          var data = await res.json();
+          if (!res.ok) {
+            // Rate limit — auto-retry after delay
+            if (res.status === 429 && retryCount < maxRetries) {
+              var waitSec = (retryCount + 1) * 15;
+              updateLoaderMsg('⏳ Rate limited — retrying in ' + waitSec + 's...');
+              await sleep(waitSec * 1000);
+              return callAPI(provider, key, prompt, retryCount + 1);
             }
-          })
-        });
-        var data = await res.json();
-        if (!res.ok) throw new Error(data.error ? data.error.message : 'Gemini error');
-        return data.candidates[0].content.parts[0].text;
-      } else if (provider === 'openai') {
-        var res = await fetch('https://api.openai.com/v1/chat/completions', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + key
-          },
-          body: JSON.stringify({
-            model: 'gpt-3.5-turbo',
-            messages: [{
-              role: 'user',
-              content: prompt
-            }],
-            max_tokens: 8192
-          })
-        });
-        var data = await res.json();
-        if (!res.ok) throw new Error(data.error ? data.error.message : 'OpenAI error');
-        return data.choices[0].message.content;
+            throw new Error(data.error ? data.error.message : 'Groq API error (HTTP ' + res.status + ')');
+          }
+          return data.choices[0].message.content;
+        } else if (provider === 'gemini') {
+          var res = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=' + key, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              contents: [{
+                parts: [{
+                  text: prompt
+                }]
+              }],
+              generationConfig: {
+                maxOutputTokens: 8192
+              }
+            })
+          });
+          var data = await res.json();
+          if (!res.ok) {
+            if (res.status === 429 && retryCount < maxRetries) {
+              var waitSec = (retryCount + 1) * 15;
+              updateLoaderMsg('⏳ Rate limited — retrying in ' + waitSec + 's...');
+              await sleep(waitSec * 1000);
+              return callAPI(provider, key, prompt, retryCount + 1);
+            }
+            throw new Error(data.error ? data.error.message : 'Gemini API error (HTTP ' + res.status + ')');
+          }
+          return data.candidates[0].content.parts[0].text;
+        } else if (provider === 'openai') {
+          var res = await fetch('https://api.openai.com/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': 'Bearer ' + key
+            },
+            body: JSON.stringify({
+              model: 'gpt-3.5-turbo',
+              messages: [{
+                role: 'user',
+                content: prompt
+              }],
+              max_tokens: 8192
+            })
+          });
+          var data = await res.json();
+          if (!res.ok) {
+            if (res.status === 429 && retryCount < maxRetries) {
+              var waitSec = (retryCount + 1) * 15;
+              updateLoaderMsg('⏳ Rate limited — retrying in ' + waitSec + 's...');
+              await sleep(waitSec * 1000);
+              return callAPI(provider, key, prompt, retryCount + 1);
+            }
+            throw new Error(data.error ? data.error.message : 'OpenAI API error (HTTP ' + res.status + ')');
+          }
+          return data.choices[0].message.content;
+        }
+      } catch (err) {
+        if (err.message && err.message.indexOf('Failed to fetch') !== -1) {
+          throw new Error('Network error — check your internet connection and try again.');
+        }
+        throw err;
       }
+    }
+
+    function sleep(ms) {
+      return new Promise(function(resolve) { setTimeout(resolve, ms); });
+    }
+
+    function updateLoaderMsg(msg) {
+      var loaderP = document.querySelector('.loader p');
+      if (loaderP) loaderP.textContent = msg;
     }
 
     function escapeHtml(text) {
@@ -1266,18 +1310,29 @@
         if (line.match(/^Q\d+\.|^Question\s+\d+|^Problem\s+\d+/i) || line.match(/^\d+\.\s+[A-Z]/)) {
           if (currentQ) questions.push(currentQ);
           var qText = line.replace(/^Q\d+\.?\s?|^Question\s+\d+\.?\s?|^Problem\s+\d+[:\s]?|^\d+\.\s+/, '').trim();
-          currentQ = { question: qText, solution: [], difficulty: currentDifficulty };
+          currentQ = { question: '', solution: [], difficulty: currentDifficulty, inSolution: false };
+          
+          var solMatch = qText.match(/(Solution:|Answer:)\s*(.*)/i);
+          if (solMatch) {
+             currentQ.question = qText.substring(0, solMatch.index).trim();
+             var solText = solMatch[2].trim();
+             if (solText) currentQ.solution.push(solText);
+             currentQ.inSolution = true;
+          } else {
+             currentQ.question = qText;
+          }
         }
-        else if (currentQ && (line.match(/^Solution:|^Answer:/i) || line.match(/^Step/i))) {
-          var solLine = line.replace(/^Solution:\s?|^Answer:\s?/i, '').trim();
-          if (solLine) currentQ.solution.push(solLine);
+        else if (currentQ && !currentQ.inSolution && line.match(/(Solution:|Answer:)/i)) {
+          var solMatch = line.match(/(Solution:|Answer:)\s*(.*)/i);
+          currentQ.question += ' ' + line.substring(0, solMatch.index).trim();
+          var solText = solMatch[2].trim();
+          if (solText) currentQ.solution.push(solText);
+          currentQ.inSolution = true;
         }
-        else if (currentQ && currentQ.solution.length > 0) {
-          // Continuation of solution
+        else if (currentQ && currentQ.inSolution) {
           currentQ.solution.push(line);
         }
         else if (currentQ) {
-          // Continuation of question text
           currentQ.question += ' ' + line;
         }
       }
@@ -1408,33 +1463,79 @@
     function formatSummary(content) {
       var formatted = '<div class="formatted-output">';
       var lines = content.split('\n');
-      var currentSection = '';
+      var inList = false;
+      var listType = '';
 
       for (var i = 0; i < lines.length; i++) {
         var line = lines[i].trim();
-        if (!line) continue;
+        if (!line) {
+          if (inList) {
+            formatted += listType === 'ul' ? '</ul>' : '</ol>';
+            inList = false;
+          }
+          formatted += '<div style="height: 8px;"></div>';
+          continue;
+        }
 
-        if (line.match(/Must-Know|Quick Facts|Exam Questions|Mnemonics|Key Points|Important|Key Formulas|Key Terms|Tips and Tricks/i)) {
-          currentSection = line;
-          var cleanLine = line.replace(/\*\*/g, '').replace(/\*\*/g, '').trim();
-          formatted += '<div style="background: linear-gradient(135deg, rgba(29, 155, 240, 0.1) 0%, rgba(113, 235, 245, 0.05) 100%); border-left: 4px solid #1d9bf0; padding: 14px; margin: 16px 0; border-radius: 8px;">';
-          formatted += '<h2 style="color: #1d9bf0; margin: 0 0 12px 0; font-size: 1.2rem; display: flex; align-items: center; gap: 8px;">📌 ' + parseMarkdown(cleanLine) + '</h2>';
-          formatted += '<div>';
-        } else if (line.match(/^[-•*]\s?[0-9]/)) {
-          var itemText = line.replace(/^[-•*]\s?\d+\.\s?/, '').trim();
+        // Headings with # or bolded section titles
+        if (line.match(/^#{1,6}\s/) || (line.match(/^\*\*[^*]+\*\*$/) && line.length < 50) || line.match(/^(Must-Know|Quick Facts|Exam Questions|Mnemonics|Key Points|Important|Key Formulas|Key Terms|Tips and Tricks)/i)) {
+          if (inList) {
+            formatted += listType === 'ul' ? '</ul>' : '</ol>';
+            inList = false;
+          }
+          var level = line.match(/^#+/) ? line.match(/^#+/)[0].length : 2;
+          var text = line.replace(/^#+\s/, '').replace(/\*\*/g, '').trim();
+          text = parseMarkdown(text);
+          formatted += '<h' + (level + 1) + ' style="color: #1d9bf0; margin: 24px 0 12px 0; border-bottom: 2px solid rgba(29, 155, 240, 0.2); padding-bottom: 8px;">' + text + '</h' + (level + 1) + '>';
+        }
+        // Sub-items with dashes or bullets
+        else if (line.match(/^[-–•*]\s/) || line.match(/^\s+[-–•*]\s/)) {
+          if (!inList || listType !== 'ul') {
+            if (inList) formatted += '</ol>';
+            formatted += '<ul style="margin: 10px 0 10px 20px; list-style: none;">';
+            inList = true;
+            listType = 'ul';
+          }
+          var itemText = line.replace(/^\s*[-–•*]\s/, '').trim();
           itemText = parseMarkdown(itemText);
-          formatted += '<p style="margin: 8px 0; padding-left: 16px; position: relative; line-height: 1.7; color: #bab9b4;"><span style="position: absolute; left: 0; color: #71ebf5; font-weight: bold;">▸</span>' + itemText + '</p>';
-        } else if (line.match(/^[-•*]/)) {
-          var itemText = line.replace(/^[-•*]\s?/, '').trim();
+          formatted += '<li style="margin: 8px 0; padding-left: 20px; position: relative; line-height: 1.7; color: #e7e9ea;"><span style="position: absolute; left: 0; color: #1d9bf0;">•</span>' + itemText + '</li>';
+        }
+        // Numbered list
+        else if (line.match(/^\d+\.\s/)) {
+          if (!inList || listType !== 'ol') {
+            if (inList) formatted += '</ul>';
+            formatted += '<ol style="margin: 10px 0 10px 40px; color: #1d9bf0; line-height: 1.7;">';
+            inList = true;
+            listType = 'ol';
+          }
+          var itemText = line.replace(/^\d+\.\s/, '').trim();
           itemText = parseMarkdown(itemText);
-          formatted += '<p style="margin: 8px 0; padding-left: 16px; position: relative; line-height: 1.7; color: #bab9b4;"><span style="position: absolute; left: 0; color: #71ebf5; font-weight: bold;">▸</span>' + itemText + '</p>';
-        } else if (currentSection && line.length > 0) {
-          var text = parseMarkdown(line);
-          formatted += '<p style="margin: 6px 0; color: #bab9b4; line-height: 1.6;">' + text + '</p>';
+          formatted += '<li style="margin: 8px 0; color: #e7e9ea;"><span style="color: #e7e9ea;">' + itemText + '</span></li>';
+        }
+        // Definition lines (e.g. "Term: Definition")
+        else if (line.match(/^[A-Za-z\s]+:/) || line.match(/^\*\*[^*]+\*\*:/)) {
+          if (inList) {
+            formatted += listType === 'ul' ? '</ul>' : '</ol>';
+            inList = false;
+          }
+          var defText = parseMarkdown(line);
+          formatted += '<p style="margin: 12px 0; padding: 12px 16px; background: rgba(29, 155, 240, 0.05); border-left: 4px solid #1d9bf0; border-radius: 6px; color: #e7e9ea;">' + defText + '</p>';
+        }
+        // Normal paragraph
+        else {
+          if (inList) {
+            formatted += listType === 'ul' ? '</ul>' : '</ol>';
+            inList = false;
+          }
+          var pText = parseMarkdown(line);
+          formatted += '<p style="margin: 10px 0; line-height: 1.8; color: #bab9b4;">' + pText + '</p>';
         }
       }
 
-      formatted += '</div></div></div>';
+      if (inList) {
+        formatted += listType === 'ul' ? '</ul>' : '</ol>';
+      }
+      formatted += '</div>';
       return formatted;
     }
 
@@ -1550,18 +1651,20 @@
     async function generate() {
       var topic = document.getElementById('topic').value.trim();
       if (!topic) {
-        alert('Please enter a topic');
+        showToast('⚠️ Please enter a topic');
         return;
       }
       var key = document.getElementById('apiKey').value.trim();
       if (!key) {
-        alert('Please paste your API key');
+        showToast('⚠️ Please paste your API key');
         return;
       }
       var provider = document.getElementById('apiProvider').value;
       var subject = document.getElementById('subject').value;
       var grade = document.getElementById('grade').value;
-      document.getElementById('loader').style.display = 'flex';
+      var loader = document.getElementById('loader');
+      loader.style.display = 'flex';
+      updateLoaderMsg('Generating material...');
       try {
         var prompt = getPrompt(contentType, topic, subject, grade);
         var result = await callAPI(provider, key, prompt);
@@ -1575,10 +1678,40 @@
         renderHistory();
         showToast('✨ Material generated successfully!');
       } catch (e) {
-        alert('Error: ' + e.message);
+        showErrorModal(e.message, provider);
       } finally {
-        document.getElementById('loader').style.display = 'none';
+        loader.style.display = 'none';
+        updateLoaderMsg('Generating material...');
       }
+    }
+
+    function showErrorModal(message, provider) {
+      // Remove existing modal if any
+      var existing = document.getElementById('errorModal');
+      if (existing) existing.remove();
+
+      var tips = '';
+      if (message.indexOf('tokens per minute') !== -1 || message.indexOf('rate') !== -1 || message.indexOf('429') !== -1) {
+        tips = '<p style="color: #fbbf24; margin-top: 10px;">💡 <strong>Tip:</strong> Groq free tier has a low token limit. Wait 60 seconds and try again, or switch to <strong>Gemini</strong> which has a much more generous free tier.</p>';
+      } else if (message.indexOf('401') !== -1 || message.indexOf('invalid') !== -1 || message.indexOf('Incorrect') !== -1) {
+        tips = '<p style="color: #fbbf24; margin-top: 10px;">💡 <strong>Tip:</strong> Your API key appears to be invalid. Double-check that you copied the full key from your ' + provider + ' dashboard.</p>';
+      } else if (message.indexOf('Network') !== -1 || message.indexOf('fetch') !== -1) {
+        tips = '<p style="color: #fbbf24; margin-top: 10px;">💡 <strong>Tip:</strong> Check your internet connection and try again.</p>';
+      }
+
+      var modal = document.createElement('div');
+      modal.id = 'errorModal';
+      modal.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(15,20,25,0.9);display:flex;justify-content:center;align-items:center;z-index:1002;backdrop-filter:blur(6px);';
+      modal.innerHTML = '<div style="background:linear-gradient(135deg,#16181c,#1a1f2e);border:2px solid #ef4444;border-radius:16px;padding:28px;max-width:500px;width:90%;box-shadow:0 8px 32px rgba(239,68,68,0.2);">' +
+        '<h3 style="color:#ef4444;margin-bottom:14px;font-size:1.2rem;">⚠️ API Error</h3>' +
+        '<p style="color:#bab9b4;line-height:1.6;font-size:0.9rem;word-break:break-word;">' + message + '</p>' +
+        tips +
+        '<div style="display:flex;gap:10px;margin-top:20px;">' +
+          '<button onclick="document.getElementById(\'errorModal\').remove(); generate();" style="flex:1;padding:12px;border-radius:10px;border:none;background:linear-gradient(135deg,#1d9bf0,#1a8cd8);color:#fff;font-weight:600;cursor:pointer;transition:all 0.3s;">🔄 Retry</button>' +
+          '<button onclick="document.getElementById(\'errorModal\').remove()" style="flex:1;padding:12px;border-radius:10px;border:1px solid #2f3336;background:#0f1419;color:#71767b;font-weight:500;cursor:pointer;transition:all 0.3s;">Dismiss</button>' +
+        '</div>' +
+      '</div>';
+      document.body.appendChild(modal);
     }
 
     function showResult(content, type) {
