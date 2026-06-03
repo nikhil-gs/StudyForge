@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>StudyForge - AI Study Material Generator</title>
+  <title>StudyForAll - AI Study Material Generator</title>
   <style>
     * {
       margin: 0;
@@ -532,7 +532,7 @@
 </head>
 <body>
   <div class="header">
-    <h1>StudyForge</h1>
+    <h1>StudyForAll</h1>
     <p>AI-Powered Study Material Generator</p>
   </div>
 
@@ -1291,7 +1291,7 @@
       var url = URL.createObjectURL(blob);
       var a = document.createElement('a');
       a.href = url;
-      a.download = 'studyforge-' + contentType + '-' + new Date().toISOString().slice(0, 10) + '.txt';
+      a.download = 'StudyForAll-' + contentType + '-' + new Date().toISOString().slice(0, 10) + '.txt';
       a.click();
       URL.revokeObjectURL(url);
       showToast('⬇️ Downloaded successfully!');
