@@ -1307,7 +1307,7 @@
         }
 
         // Question line
-        if (line.match(/^Q\d+\.|^Question\s+\d+|^Problem\s+\d+/i) || line.match(/^\d+\.\s+[A-Z]/)) {
+        if (line.match(/^Q\d+\.|^Question\s+\d+|^Problem\s+\d+/i)) {
           if (currentQ) questions.push(currentQ);
           var qText = line.replace(/^Q\d+\.?\s?|^Question\s+\d+\.?\s?|^Problem\s+\d+[:\s]?|^\d+\.\s+/, '').trim();
           currentQ = { question: '', solution: [], difficulty: currentDifficulty, inSolution: false };
