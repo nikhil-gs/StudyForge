@@ -64,7 +64,6 @@
     }
 
     .api-select,
-    .dropdown,
     .topic-input,
     .api-key-input {
       padding: 12px 16px;
@@ -77,7 +76,6 @@
     }
 
     .api-select:focus,
-    .dropdown:focus,
     .topic-input:focus,
     .api-key-input:focus {
       outline: none;
@@ -96,15 +94,10 @@
       cursor: pointer;
     }
 
-    .dropdown {
-      flex: 1;
-      min-width: 140px;
-      cursor: pointer;
-    }
-
     .topic-input {
       width: 100%;
-      margin-bottom: 12px;
+      font-size: 1rem;
+      padding: 14px 18px;
     }
 
     .form-row {
@@ -1131,31 +1124,7 @@
 
   <div class="card form-card">
     <div class="form-row">
-      <input type="text" id="topic" class="topic-input" placeholder="Enter topic (e.g., Photosynthesis)">
-    </div>
-    <div class="form-row">
-      <select id="subject" class="dropdown">
-        <option value="Science">Science</option>
-        <option value="Maths">Maths</option>
-        <option value="History">History</option>
-        <option value="English">English</option>
-        <option value="Physics">Physics</option>
-        <option value="Chemistry">Chemistry</option>
-        <option value="Biology">Biology</option>
-        <option value="Geography">Geography</option>
-        <option value="Computer Science">Computer Science</option>
-        <option value="Economics">Economics</option>
-      </select>
-      <select id="grade" class="dropdown">
-        <option value="6">Grade 6</option>
-        <option value="7">Grade 7</option>
-        <option value="8">Grade 8</option>
-        <option value="9">Grade 9</option>
-        <option value="10">Grade 10</option>
-        <option value="11">Grade 11</option>
-        <option value="12">Grade 12</option>
-        <option value="UG">Undergraduate</option>
-      </select>
+      <input type="text" id="topic" class="topic-input" placeholder="Search a topic (e.g., Photosynthesis, World War II, Recursion)">
     </div>
   </div>
 
@@ -1234,13 +1203,15 @@
       document.querySelector('[data-type="' + t + '"]').classList.add('active');
     }
 
-    function getPrompt(type, topic, subject, grade) {
-      var gradeLabel = grade === 'UG' ? 'Undergraduate' : 'Grade ' + grade;
-      var detailLevel = grade === 'UG' ? 'comprehensive university-level' : 'detailed';
-      var syllabusNote = grade === 'UG' ? 'Cover all major concepts from standard university curriculum.' : 'Cover all major concepts from the syllabus.';
+    function getPrompt(type, topic) {
+      // With the subject and grade pickers gone, the model works both out from
+      // the topic itself.
+      var audience = 'Work out the subject this topic belongs to and the level it is normally taught at, ' +
+        'then pitch the material at that level. If the topic is ambiguous, cover it at a solid ' +
+        'senior-secondary standard and say which reading you assumed in one short line at the top.';
 
       var prompts = {
-        notes: 'Create ' + detailLevel + ' study notes for ' + gradeLabel + ' ' + subject + ' on "' + topic + '". ' + syllabusNote + '\n\n' +
+        notes: 'Create detailed, comprehensive study notes on "' + topic + '". ' + audience + ' Cover all the major concepts.\n\n' +
           'Write the answer in GitHub-flavoured Markdown, using exactly these headings:\n' +
           '## 1. Introduction & Definition\n## 2. Historical Context\n## 3. Key Concepts\n## 4. Detailed Explanation\n' +
           '## 5. Important Formulas, Rules & Laws\n## 6. Applications & Real-World Examples\n' +
@@ -1254,7 +1225,7 @@
           '- Include several worked examples with real numbers.\n' +
           'Be thorough and in depth in every section.',
 
-        mcq: 'Generate exactly 15 MCQs for ' + gradeLabel + ' ' + subject + ' on "' + topic + '". ' +
+        mcq: 'Generate exactly 15 MCQs on "' + topic + '". ' + audience + '\n\n' +
           'Organise them into Easy, Medium and Hard sections with 5 questions each.\n\n' +
           'Use this EXACT format. Keep every label plain — do not bold them, do not add extra punctuation:\n\n' +
           '## Easy\n\n' +
@@ -1270,7 +1241,7 @@
           'Every question needs 4 options labelled A) to D), one "Answer:" line holding just the letter, and one "Explanation:" line. ' +
           'Number the questions continuously from Q1 to Q15 and make them genuinely increase in difficulty.',
 
-        practice: 'Create exactly 15 practice questions with full solutions for ' + gradeLabel + ' ' + subject + ' on "' + topic + '". ' +
+        practice: 'Create exactly 15 practice questions with full solutions on "' + topic + '". ' + audience + '\n\n' +
           'Organise them into Easy, Medium and Hard sections with 5 questions each.\n\n' +
           'Use this EXACT format. Keep the "Solution:" label plain and on its own line:\n\n' +
           '## Easy\n\n' +
@@ -1282,7 +1253,7 @@
           'Inside a solution you may use Markdown: numbered steps, **bold** for results, backticks for formulas, and tables for structured data. ' +
           'Number the questions continuously from Q1 to Q15 and show complete working for every one.',
 
-        flashcards: 'Create exactly 15 flashcards for ' + gradeLabel + ' ' + subject + ' on "' + topic + '".\n\n' +
+        flashcards: 'Create exactly 15 flashcards on "' + topic + '". ' + audience + '\n\n' +
           'Use this EXACT format, one card per pair, with a blank line between cards:\n\n' +
           'Front: [Question or term]\n' +
           'Back: [Answer or definition]\n\n' +
@@ -1291,7 +1262,7 @@
           'Keep every label plain — do not bold "Front" or "Back", and do not number the cards. ' +
           'Keep each side under 40 words so it fits on a card.',
 
-        summary: 'Create a detailed revision summary for ' + gradeLabel + ' ' + subject + ' on "' + topic + '".\n\n' +
+        summary: 'Create a detailed revision summary on "' + topic + '". ' + audience + '\n\n' +
           'Write it in GitHub-flavoured Markdown using exactly these headings:\n' +
           '## 1. Must-Know Concepts\n## 2. Quick Facts\n## 3. Key Formulas\n## 4. Common Exam Questions\n## 5. Mnemonics & Memory Aids\n\n' +
           'Formatting rules:\n' +
@@ -1301,7 +1272,8 @@
           '- Use "- " for bullets, indenting sub-points by exactly 2 spaces.\n' +
           'Give several items under every heading.',
 
-        mindmap: 'Create a structured mind map for "' + topic + '" suitable for ' + gradeLabel + ' ' + subject + '.\n\n' +
+        mindmap: 'Create a structured mind map for "' + topic + '". ' +
+          'Work out the subject and level from the topic itself and pitch it accordingly.\n\n' +
           'Output nothing but the tree. Use "- " bullets and indent each level by exactly 2 more spaces:\n\n' +
           '- ' + topic + '\n' +
           '  - Main Branch 1\n' +
@@ -1353,6 +1325,9 @@
     document.addEventListener('DOMContentLoaded', function() {
       loadKey();
       document.getElementById('apiProvider').addEventListener('change', loadKey);
+      document.getElementById('topic').addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') generate();
+      });
     });
 
     // ── Model IDs (kept in one place so they are easy to update) ──
@@ -2393,13 +2368,11 @@
         return;
       }
       saveKey(provider, key);
-      var subject = document.getElementById('subject').value;
-      var grade = document.getElementById('grade').value;
       var loader = document.getElementById('loader');
       loader.style.display = 'flex';
       updateLoaderMsg('Generating material...');
       try {
-        var prompt = getPrompt(contentType, topic, subject, grade);
+        var prompt = getPrompt(contentType, topic);
         var result = await callAPI(provider, key, prompt);
         historyData.push({
           topic: topic,
