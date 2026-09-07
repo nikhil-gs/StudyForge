@@ -313,6 +313,397 @@
       margin: 10px 0;
     }
 
+    /* ── Markdown body ── */
+    .md-body h2.md-h, .md-body h3.md-h, .md-body h4.md-h,
+    .md-body h5.md-h, .md-body h6.md-h {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      line-height: 1.35;
+    }
+
+    .md-body h2.md-h {
+      color: #1d9bf0;
+      font-size: 1.35rem;
+      margin: 26px 0 14px 0;
+      padding-bottom: 10px;
+      border-bottom: 2px solid rgba(29, 155, 240, 0.3);
+    }
+
+    .md-body h3.md-h {
+      color: #71ebf5;
+      font-size: 1.12rem;
+      margin: 22px 0 10px 0;
+    }
+
+    .md-body h4.md-h {
+      color: #e7e9ea;
+      font-size: 1rem;
+      margin: 18px 0 8px 0;
+      font-weight: 600;
+    }
+
+    .md-body h5.md-h, .md-body h6.md-h {
+      color: #bab9b4;
+      font-size: 0.92rem;
+      margin: 14px 0 6px 0;
+      font-weight: 600;
+    }
+
+    .md-body > :first-child { margin-top: 0; }
+
+    .md-secnum {
+      flex: 0 0 auto;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: rgba(29, 155, 240, 0.2);
+      color: #1d9bf0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+
+    .md-body p {
+      margin: 10px 0;
+      line-height: 1.75;
+      color: #bab9b4;
+    }
+
+    .md-body strong { color: #e7e9ea; font-weight: 700; }
+    .md-body em { color: #d3d3cf; font-style: italic; }
+    .md-body del { color: #71767b; }
+
+    .md-link { color: #1d9bf0; text-decoration: underline; }
+    .md-link:hover { color: #71ebf5; }
+
+    .md-list {
+      margin: 10px 0 10px 22px;
+      padding-left: 8px;
+    }
+
+    .md-list li {
+      margin: 7px 0;
+      line-height: 1.7;
+      color: #bab9b4;
+    }
+
+    ul.md-list { list-style: none; }
+    ul.md-list > li { position: relative; padding-left: 18px; }
+    ul.md-list > li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: #1d9bf0;
+    }
+
+    ol.md-list { list-style: decimal; }
+    ol.md-list > li::marker { color: #1d9bf0; font-weight: 600; }
+
+    .md-list .md-list { margin-left: 14px; }
+
+    .md-def {
+      margin: 12px 0;
+      padding: 10px 14px;
+      background: rgba(113, 235, 245, 0.06);
+      border-left: 3px solid #71ebf5;
+      border-radius: 0 6px 6px 0;
+      color: #bab9b4;
+    }
+
+    .md-def-term { color: #71ebf5; font-weight: 600; }
+
+    .md-quote {
+      margin: 14px 0;
+      padding: 10px 16px;
+      background: rgba(29, 155, 240, 0.05);
+      border-left: 4px solid #1d9bf0;
+      border-radius: 0 6px 6px 0;
+      color: #bab9b4;
+      font-style: italic;
+    }
+
+    .md-hr {
+      border: none;
+      border-top: 1px solid #2f3336;
+      margin: 22px 0;
+    }
+
+    .md-warn {
+      color: #fbbf24;
+      background: rgba(251, 191, 36, 0.08);
+      border-left: 3px solid #fbbf24;
+      padding: 8px 12px;
+      border-radius: 0 6px 6px 0;
+      margin: 10px 0;
+      font-size: 0.88rem;
+    }
+
+    /* ── Tables ── */
+    .md-table-wrap {
+      overflow-x: auto;
+      margin: 18px 0;
+      border: 1px solid #2f3336;
+      border-radius: 10px;
+    }
+
+    .md-table {
+      border-collapse: collapse;
+      width: 100%;
+      min-width: 380px;
+      font-size: 0.9rem;
+    }
+
+    .md-table th {
+      background: rgba(29, 155, 240, 0.15);
+      color: #71ebf5;
+      font-weight: 600;
+      padding: 11px 14px;
+      border-bottom: 2px solid rgba(29, 155, 240, 0.35);
+      white-space: nowrap;
+    }
+
+    .md-table td {
+      padding: 10px 14px;
+      color: #e7e9ea;
+      border-top: 1px solid #2f3336;
+      line-height: 1.6;
+    }
+
+    .md-table tbody tr:nth-child(even) { background: rgba(255, 255, 255, 0.02); }
+    .md-table tbody tr:hover { background: rgba(29, 155, 240, 0.06); }
+
+    /* ── Code ── */
+    .md-code {
+      background: rgba(29, 155, 240, 0.16);
+      color: #71ebf5;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.88em;
+      font-family: 'Consolas', 'Monaco', monospace;
+    }
+
+    .md-pre {
+      position: relative;
+      background: #16181c;
+      border: 1px solid #2f3336;
+      border-radius: 10px;
+      padding: 16px;
+      margin: 16px 0;
+      overflow-x: auto;
+    }
+
+    .md-pre code {
+      color: #e7e9ea;
+      font-family: 'Consolas', 'Monaco', monospace;
+      font-size: 0.86rem;
+      line-height: 1.6;
+      white-space: pre;
+    }
+
+    .md-lang {
+      position: absolute;
+      top: 8px;
+      right: 12px;
+      font-size: 0.7rem;
+      color: #71767b;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* ── Question cards ── */
+    .q-card {
+      background: linear-gradient(135deg, rgba(29, 155, 240, 0.06) 0%, rgba(113, 235, 245, 0.03) 100%);
+      border: 2px solid #2f3336;
+      border-radius: 10px;
+      padding: 16px;
+      margin: 14px 0;
+    }
+
+    .q-title {
+      color: #1d9bf0 !important;
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 12px !important;
+    }
+
+    .q-body p:first-child { margin-top: 0; }
+
+    .mcq-letter { color: #1d9bf0; font-weight: 600; margin-right: 10px; }
+    .mcq-icon { font-weight: bold; font-size: 1.1rem; }
+    .mcq-inert { cursor: default; opacity: 0.85; }
+
+    .mcq-explain {
+      padding: 10px 14px;
+      border-radius: 6px;
+      margin: 10px 0;
+      background: rgba(113, 235, 245, 0.08);
+      border-left: 4px solid #71ebf5;
+      color: #71ebf5;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .reveal-btn {
+      background: rgba(29, 155, 240, 0.15);
+      border: 1px solid #1d9bf0;
+      color: #1d9bf0;
+      padding: 8px 18px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: all 0.3s ease;
+    }
+
+    .reveal-btn:hover { background: rgba(29, 155, 240, 0.28); }
+
+    .reveal-btn.revealed {
+      background: rgba(34, 197, 94, 0.15);
+      border-color: #22c55e;
+      color: #22c55e;
+    }
+
+    .sol-box {
+      background: rgba(34, 197, 94, 0.07);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      border-radius: 8px;
+      padding: 14px;
+      margin-top: 10px;
+    }
+
+    .sol-title {
+      color: #22c55e !important;
+      font-weight: 600;
+      margin: 0 0 8px 0 !important;
+    }
+
+    /* ── Flashcards (click to flip) ── */
+    .flip-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 16px;
+      margin: 18px 0;
+    }
+
+    .flip-card {
+      perspective: 1200px;
+      height: 190px;
+      cursor: pointer;
+    }
+
+    .flip-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.55s;
+      transform-style: preserve-3d;
+    }
+
+    .flip-card.flipped .flip-inner { transform: rotateY(180deg); }
+
+    .flip-face {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border-radius: 12px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .flip-front {
+      background: linear-gradient(135deg, #1d9bf0 0%, #1a8cd8 100%);
+      color: #fff;
+      box-shadow: 0 8px 24px rgba(29, 155, 240, 0.2);
+    }
+
+    .flip-back {
+      background: linear-gradient(135deg, rgba(113, 235, 245, 0.18) 0%, rgba(29, 155, 240, 0.1) 100%);
+      border: 2px solid #71ebf5;
+      color: #71ebf5;
+      transform: rotateY(180deg);
+    }
+
+    /* The default cyan code chip is unreadable on the blue card front. */
+    .flip-front code.md-code {
+      background: rgba(255, 255, 255, 0.22);
+      color: #fff;
+    }
+
+    .flip-front strong, .flip-front em { color: #fff; }
+
+    .flip-tag {
+      font-size: 0.72rem;
+      opacity: 0.75;
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .flip-text {
+      font-size: 0.95rem;
+      font-weight: 500;
+      line-height: 1.5;
+      overflow-y: auto;
+      max-height: 110px;
+    }
+
+    .flip-hint {
+      font-size: 0.68rem;
+      opacity: 0.6;
+      margin-top: 10px;
+    }
+
+    /* ── Mind map ── */
+    .mindmap-body {
+      background: #0f1419;
+      border: 1px solid #2f3336;
+      border-radius: 12px;
+      padding: 20px;
+      max-height: 700px;
+      overflow: auto;
+    }
+
+    .mm-node {
+      cursor: pointer;
+      padding: 8px 12px;
+      border-radius: 6px;
+      margin: 4px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .mm-arrow {
+      display: inline-block;
+      min-width: 18px;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .mm-leaf {
+      padding: 8px 12px;
+      border-radius: 6px;
+      margin: 4px 0;
+    }
+
+    @media (max-width: 600px) {
+      .flip-grid { grid-template-columns: 1fr; }
+      .md-table { font-size: 0.82rem; }
+      .md-table th, .md-table td { padding: 8px 10px; }
+    }
+
     .question-block {
       background: linear-gradient(135deg, rgba(29, 155, 240, 0.1) 0%, rgba(26, 140, 216, 0.05) 100%);
       border-left: 4px solid #1d9bf0;
@@ -849,24 +1240,160 @@
       var syllabusNote = grade === 'UG' ? 'Cover all major concepts from standard university curriculum.' : 'Cover all major concepts from the syllabus.';
 
       var prompts = {
-        notes: 'Create ' + detailLevel + ' study notes for ' + gradeLabel + ' ' + subject + ' on "' + topic + '". ' + syllabusNote + ' Structure: 1) Introduction & Definition, 2) Historical Context, 3) Key Concepts (with detailed explanations), 4) Detailed Explanation (with examples), 5) Important Formulas/Rules/Laws, 6) Applications & Real-world Examples, 7) Common Misconceptions & Mistakes, 8) Advanced Topics (if applicable), 9) Summary Box. Make it comprehensive with clear formatting using headers and sub-headers. Provide thorough, in-depth content for each section with multiple examples and explanations.',
+        notes: 'Create ' + detailLevel + ' study notes for ' + gradeLabel + ' ' + subject + ' on "' + topic + '". ' + syllabusNote + '\n\n' +
+          'Write the answer in GitHub-flavoured Markdown, using exactly these headings:\n' +
+          '## 1. Introduction & Definition\n## 2. Historical Context\n## 3. Key Concepts\n## 4. Detailed Explanation\n' +
+          '## 5. Important Formulas, Rules & Laws\n## 6. Applications & Real-World Examples\n' +
+          '## 7. Common Misconceptions & Mistakes\n## 8. Advanced Topics\n## 9. Summary\n\n' +
+          'Formatting rules:\n' +
+          '- Use a Markdown table wherever you compare things, list formulas alongside what each symbol means, or present any structured data. Prefer a table over a long bullet list for comparisons. Always include the header row and the |---|---| separator row.\n' +
+          '- Bold every key term with **term** the first time it appears.\n' +
+          '- Write definitions on their own line as "**Term:** explanation".\n' +
+          '- Use backticks for symbols, variables, units and code.\n' +
+          '- Use "- " for bullets, indenting sub-points by exactly 2 spaces.\n' +
+          '- Include several worked examples with real numbers.\n' +
+          'Be thorough and in depth in every section.',
 
-        mcq: 'Generate exactly 15 MCQs for ' + gradeLabel + ' ' + subject + ' on "' + topic + '". Organize them into three difficulty sections. Format EXACTLY like this:\n\n## Easy\n\nQ1. [Question]\nA) [Option]\nB) [Option]\nC) [Option]\nD) [Option]\nAnswer: [Letter]\nExplanation: [Brief explanation]\n\nQ2. [Question]\nA) [Option]\nB) [Option]\nC) [Option]\nD) [Option]\nAnswer: [Letter]\nExplanation: [Brief explanation]\n\n(continue Q3, Q4, Q5)\n\n## Medium\n\nQ6. [Question]\nA) [Option]\nB) [Option]\nC) [Option]\nD) [Option]\nAnswer: [Letter]\nExplanation: [Brief explanation]\n\n(continue Q7-Q10)\n\n## Hard\n\nQ11. [Question]\nA) [Option]\nB) [Option]\nC) [Option]\nD) [Option]\nAnswer: [Letter]\nExplanation: [Brief explanation]\n\n(continue Q12-Q15)\n\nProvide exactly 5 Easy, 5 Medium, and 5 Hard questions. Each question must have 4 options (A-D), one correct Answer letter, and an Explanation. Make sure the questions genuinely increase in difficulty.',
+        mcq: 'Generate exactly 15 MCQs for ' + gradeLabel + ' ' + subject + ' on "' + topic + '". ' +
+          'Organise them into Easy, Medium and Hard sections with 5 questions each.\n\n' +
+          'Use this EXACT format. Keep every label plain — do not bold them, do not add extra punctuation:\n\n' +
+          '## Easy\n\n' +
+          'Q1. [Question text]\n' +
+          'A) [Option]\n' +
+          'B) [Option]\n' +
+          'C) [Option]\n' +
+          'D) [Option]\n' +
+          'Answer: B\n' +
+          'Explanation: [Why B is correct]\n\n' +
+          '(then Q2 to Q5 in the same shape)\n\n' +
+          '## Medium\n\n(Q6 to Q10)\n\n## Hard\n\n(Q11 to Q15)\n\n' +
+          'Every question needs 4 options labelled A) to D), one "Answer:" line holding just the letter, and one "Explanation:" line. ' +
+          'Number the questions continuously from Q1 to Q15 and make them genuinely increase in difficulty.',
 
-        practice: 'Create exactly 15 practice questions with full solutions for ' + gradeLabel + ' ' + subject + ' on "' + topic + '". Organize them into three difficulty sections. Format EXACTLY like this:\n\n## Easy\n\nQ1. [Full question text]\n\nSolution:\n[Detailed step-by-step solution with clear working]\n\nQ2. [Full question text]\n\nSolution:\n[Detailed step-by-step solution]\n\n(continue Q3, Q4, Q5)\n\n## Medium\n\nQ6. [Full question text]\n\nSolution:\n[Detailed step-by-step solution]\n\n(continue Q7-Q10)\n\n## Hard\n\nQ11. [Full question text]\n\nSolution:\n[Detailed step-by-step solution]\n\n(continue Q12-Q15)\n\nProvide exactly 5 Easy, 5 Medium, and 5 Hard fully solved questions. Show complete step-by-step working for every solution. Each question should test different aspects of the topic.',
+        practice: 'Create exactly 15 practice questions with full solutions for ' + gradeLabel + ' ' + subject + ' on "' + topic + '". ' +
+          'Organise them into Easy, Medium and Hard sections with 5 questions each.\n\n' +
+          'Use this EXACT format. Keep the "Solution:" label plain and on its own line:\n\n' +
+          '## Easy\n\n' +
+          'Q1. [Full question text]\n\n' +
+          'Solution:\n' +
+          '[Step-by-step working]\n\n' +
+          '(then Q2 to Q5 in the same shape)\n\n' +
+          '## Medium\n\n(Q6 to Q10)\n\n## Hard\n\n(Q11 to Q15)\n\n' +
+          'Inside a solution you may use Markdown: numbered steps, **bold** for results, backticks for formulas, and tables for structured data. ' +
+          'Number the questions continuously from Q1 to Q15 and show complete working for every one.',
 
-        flashcards: 'Create exactly 15 flashcards for ' + gradeLabel + ' ' + subject + ' on "' + topic + '". Format EACH card on separate lines like this:\nFront: [Question]\nBack: [Answer]\n\nRepeat this format for all 15 cards. Do not mix questions together.',
+        flashcards: 'Create exactly 15 flashcards for ' + gradeLabel + ' ' + subject + ' on "' + topic + '".\n\n' +
+          'Use this EXACT format, one card per pair, with a blank line between cards:\n\n' +
+          'Front: [Question or term]\n' +
+          'Back: [Answer or definition]\n\n' +
+          'Front: [Question or term]\n' +
+          'Back: [Answer or definition]\n\n' +
+          'Keep every label plain — do not bold "Front" or "Back", and do not number the cards. ' +
+          'Keep each side under 40 words so it fits on a card.',
 
-        summary: 'Create a detailed revision summary for ' + gradeLabel + ' ' + subject + ' on "' + topic + '". Include: Must-Know Concepts, Quick Facts, Common Exam Questions, Mnemonics, Key Formulas. Provide thorough and comprehensive content for each section with multiple items and examples.',
+        summary: 'Create a detailed revision summary for ' + gradeLabel + ' ' + subject + ' on "' + topic + '".\n\n' +
+          'Write it in GitHub-flavoured Markdown using exactly these headings:\n' +
+          '## 1. Must-Know Concepts\n## 2. Quick Facts\n## 3. Key Formulas\n## 4. Common Exam Questions\n## 5. Mnemonics & Memory Aids\n\n' +
+          'Formatting rules:\n' +
+          '- Put Key Formulas in a Markdown table with columns: Formula | What it means | When to use it. Include the |---|---| separator row.\n' +
+          '- Put Quick Facts in a Markdown table where the data is comparable.\n' +
+          '- Bold every key term with **term**, and use backticks for symbols and units.\n' +
+          '- Use "- " for bullets, indenting sub-points by exactly 2 spaces.\n' +
+          'Give several items under every heading.',
 
-        mindmap: 'Create a structured mind map for "' + topic + '" suitable for ' + gradeLabel + ' ' + subject + '. Format exactly like:\n\n' + topic + '\n  - Main Branch 1\n    - Sub-topic 1.1\n      - Point 1.1.1\n      - Point 1.1.2\n    - Sub-topic 1.2\n      - Point 1.2.1\n  - Main Branch 2\n    - Sub-topic 2.1\n      - Point 2.1.1\n\nUse consistent indentation with 2 spaces per level. Each branch should have 2-3 sub-topics with 2-3 points each.'
+        mindmap: 'Create a structured mind map for "' + topic + '" suitable for ' + gradeLabel + ' ' + subject + '.\n\n' +
+          'Output nothing but the tree. Use "- " bullets and indent each level by exactly 2 more spaces:\n\n' +
+          '- ' + topic + '\n' +
+          '  - Main Branch 1\n' +
+          '    - Sub-topic 1.1\n' +
+          '      - Point 1.1.1\n' +
+          '      - Point 1.1.2\n' +
+          '    - Sub-topic 1.2\n' +
+          '  - Main Branch 2\n' +
+          '    - Sub-topic 2.1\n\n' +
+          'Give 4 to 6 main branches, each with 2 to 4 sub-topics, each with 2 to 3 points. ' +
+          'No headings, no prose, no bold — just the indented bullet tree.'
       };
+
       return prompts[type];
+    }
+
+    // ── API key handling ──
+    // Copy-pasted keys often carry spaces, newlines or zero-width characters.
+    function cleanKey(value) {
+      return String(value || '').replace(/[\s\u200B-\u200D\uFEFF]/g, '');
+    }
+
+    // Catches the most common paste mistakes before we spend a request on them.
+    function checkKeyShape(provider, key) {
+      if (provider === 'groq' && key.indexOf('gsk_') !== 0) {
+        return '⚠️ Groq keys start with "gsk_" — check you copied the whole key';
+      }
+      if (provider === 'openai' && key.indexOf('sk-') !== 0) {
+        return '⚠️ OpenAI keys start with "sk-" — check you copied the whole key';
+      }
+      if (provider === 'gemini' && key.indexOf('AIza') !== 0) {
+        return '⚠️ Gemini keys start with "AIza" — check you copied the whole key';
+      }
+      return '';
+    }
+
+    // Keys are kept per provider in this browser only; they are never sent anywhere
+    // except that provider's own API.
+    function saveKey(provider, key) {
+      try { localStorage.setItem('sf_key_' + provider, key); } catch (e) {}
+    }
+
+    function loadKey() {
+      var provider = document.getElementById('apiProvider').value;
+      var input = document.getElementById('apiKey');
+      try { input.value = localStorage.getItem('sf_key_' + provider) || ''; } catch (e) {}
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      loadKey();
+      document.getElementById('apiProvider').addEventListener('change', loadKey);
+    });
+
+    // ── Model IDs (kept in one place so they are easy to update) ──
+    var MODELS = {
+      groq: 'openai/gpt-oss-20b',
+      gemini: 'gemini-3.5-flash',
+      openai: 'gpt-4.1-mini'
+    };
+
+    // Reads the body once and tolerates non-JSON error pages (proxies, gateways).
+    async function readBody(res) {
+      var raw = await res.text();
+      try {
+        return { json: JSON.parse(raw), raw: raw };
+      } catch (e) {
+        return { json: null, raw: raw };
+      }
+    }
+
+    // Turns any failed response into a message the user can act on.
+    function apiError(providerName, res, body) {
+      var msg = body.json && body.json.error
+        ? (body.json.error.message || body.json.error.code || JSON.stringify(body.json.error))
+        : (body.raw || '').slice(0, 200);
+
+      if (res.status === 401 || res.status === 403) {
+        return new Error('Invalid or unauthorized API key (HTTP ' + res.status + '). ' + msg);
+      }
+      if (res.status === 404 || /decommission|deprecat|not found|does not exist|no longer supported/i.test(msg)) {
+        return new Error('The model this app requests is no longer available on ' + providerName +
+          '. Update MODELS.' + providerName.toLowerCase() + ' in the code. Details: ' + msg);
+      }
+      return new Error(msg || (providerName + ' API error (HTTP ' + res.status + ')'));
     }
 
     async function callAPI(provider, key, prompt, retryCount) {
       retryCount = retryCount || 0;
       var maxRetries = 2;
+
+      // Strip stray whitespace/zero-width characters that survive a copy-paste.
+      key = cleanKey(key);
 
       try {
         if (provider === 'groq') {
@@ -877,31 +1404,36 @@
               'Authorization': 'Bearer ' + key
             },
             body: JSON.stringify({
-              model: 'llama-3.1-8b-instant',
+              model: MODELS.groq,
               messages: [{
                 role: 'user',
                 content: prompt
               }],
-              max_tokens: 4096
+              max_completion_tokens: 8192,
+              reasoning_effort: 'low'
             })
           });
-          var data = await res.json();
+          var body = await readBody(res);
           if (!res.ok) {
             // Rate limit — auto-retry after delay
             if (res.status === 429 && retryCount < maxRetries) {
-              var waitSec = (retryCount + 1) * 15;
+              var waitSec = parseInt(res.headers.get('retry-after'), 10) || (retryCount + 1) * 15;
               updateLoaderMsg('⏳ Rate limited — retrying in ' + waitSec + 's...');
               await sleep(waitSec * 1000);
               return callAPI(provider, key, prompt, retryCount + 1);
             }
-            throw new Error(data.error ? data.error.message : 'Groq API error (HTTP ' + res.status + ')');
+            throw apiError('Groq', res, body);
           }
-          return data.choices[0].message.content;
+          var gChoice = body.json && body.json.choices && body.json.choices[0];
+          var gText = gChoice && gChoice.message ? gChoice.message.content : '';
+          if (!gText) throw new Error('Groq returned an empty response — try again or shorten the topic.');
+          return gText;
         } else if (provider === 'gemini') {
-          var res = await fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=' + key, {
+          var res = await fetch('https://generativelanguage.googleapis.com/v1beta/models/' + MODELS.gemini + ':generateContent', {
             method: 'POST',
             headers: {
-              'Content-Type': 'application/json'
+              'Content-Type': 'application/json',
+              'x-goog-api-key': key
             },
             body: JSON.stringify({
               contents: [{
@@ -914,7 +1446,7 @@
               }
             })
           });
-          var data = await res.json();
+          var body = await readBody(res);
           if (!res.ok) {
             if (res.status === 429 && retryCount < maxRetries) {
               var waitSec = (retryCount + 1) * 15;
@@ -922,9 +1454,20 @@
               await sleep(waitSec * 1000);
               return callAPI(provider, key, prompt, retryCount + 1);
             }
-            throw new Error(data.error ? data.error.message : 'Gemini API error (HTTP ' + res.status + ')');
+            throw apiError('Gemini', res, body);
           }
-          return data.candidates[0].content.parts[0].text;
+          // Newer Gemini models can return internal "thought" parts — keep only real text.
+          var cand = body.json && body.json.candidates && body.json.candidates[0];
+          var parts = cand && cand.content ? (cand.content.parts || []) : [];
+          var text = '';
+          for (var p = 0; p < parts.length; p++) {
+            if (parts[p].text && !parts[p].thought) text += parts[p].text;
+          }
+          if (!text) {
+            var why = cand && cand.finishReason ? ' (finishReason: ' + cand.finishReason + ')' : '';
+            throw new Error('Gemini returned no text' + why + ' — try again or rephrase the topic.');
+          }
+          return text;
         } else if (provider === 'openai') {
           var res = await fetch('https://api.openai.com/v1/chat/completions', {
             method: 'POST',
@@ -933,29 +1476,33 @@
               'Authorization': 'Bearer ' + key
             },
             body: JSON.stringify({
-              model: 'gpt-3.5-turbo',
+              model: MODELS.openai,
               messages: [{
                 role: 'user',
                 content: prompt
               }],
-              max_tokens: 8192
+              max_completion_tokens: 8192
             })
           });
-          var data = await res.json();
+          var body = await readBody(res);
           if (!res.ok) {
             if (res.status === 429 && retryCount < maxRetries) {
-              var waitSec = (retryCount + 1) * 15;
+              var waitSec = parseInt(res.headers.get('retry-after'), 10) || (retryCount + 1) * 15;
               updateLoaderMsg('⏳ Rate limited — retrying in ' + waitSec + 's...');
               await sleep(waitSec * 1000);
               return callAPI(provider, key, prompt, retryCount + 1);
             }
-            throw new Error(data.error ? data.error.message : 'OpenAI API error (HTTP ' + res.status + ')');
+            throw apiError('OpenAI', res, body);
           }
-          return data.choices[0].message.content;
+          var oChoice = body.json && body.json.choices && body.json.choices[0];
+          var oText = oChoice && oChoice.message ? oChoice.message.content : '';
+          if (!oText) throw new Error('OpenAI returned an empty response — try again or shorten the topic.');
+          return oText;
         }
+        throw new Error('Unknown provider: ' + provider);
       } catch (err) {
         if (err.message && err.message.indexOf('Failed to fetch') !== -1) {
-          throw new Error('Network error — check your internet connection and try again.');
+          throw new Error('Network error — check your internet connection and try again. (If you opened this file directly from disk, serve it over http:// instead.)');
         }
         throw err;
       }
@@ -970,6 +1517,10 @@
       if (loaderP) loaderP.textContent = msg;
     }
 
+    // ══════════════════════════════
+    //  MARKDOWN RENDERER
+    // ══════════════════════════════
+
     function escapeHtml(text) {
       var map = {
         '&': '&amp;',
@@ -978,159 +1529,415 @@
         '"': '&quot;',
         "'": '&#039;'
       };
-      return text.replace(/[&<>"']/g, function(m) { return map[m]; });
+      var s = (text === null || text === undefined) ? '' : String(text);
+      return s.replace(/[&<>"']/g, function(m) { return map[m]; });
     }
 
-    function parseMarkdown(text) {
-      // Bold with **text**
-      text = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-      // Bold with __text__
-      text = text.replace(/__(.*?)__/g, '<strong>$1</strong>');
-      // Italic with *text* (but not **)
-      text = text.replace(/(?<!\*)\*([^\*]+)\*(?!\*)/g, '<em>$1</em>');
-      // Italic with _text_ (but not __)
-      text = text.replace(/(?<!_)_([^_]+)_(?!_)/g, '<em>$1</em>');
-      // Code with `text`
-      text = text.replace(/`([^`]+)`/g, '<code style="background: rgba(29, 155, 240, 0.2); padding: 2px 6px; border-radius: 4px; color: #71ebf5;">$1</code>');
-      return text;
+    // Inline formatting. The text is escaped before any markup is added, so model
+    // output can never inject HTML; code spans are lifted out beforehand so their
+    // contents survive verbatim.
+    function renderInline(text) {
+      var codes = [];
+      var out = (text === null || text === undefined) ? '' : String(text);
+
+      out = out.replace(/`([^`\n]+)`/g, function(m, code) {
+        codes.push(code);
+        return '@@CODE' + (codes.length - 1) + '@@';
+      });
+
+      out = escapeHtml(out);
+
+      // Links are restricted to http(s) so an escaped javascript: URL cannot slip through.
+      out = out.replace(/\[([^\]\n]+)\]\((https?:\/\/[^\s)]+)\)/g,
+        '<a href="$2" target="_blank" rel="noopener noreferrer" class="md-link">$1</a>');
+
+      out = out.replace(/\*\*\*([^*\n]+)\*\*\*/g, '<strong><em>$1</em></strong>');
+      out = out.replace(/\*\*([^*\n]+)\*\*/g, '<strong>$1</strong>');
+      out = out.replace(/(^|[^*\w])\*([^*\n]+)\*(?!\w)/g, '$1<em>$2</em>');
+      out = out.replace(/___([^_\n]+)___/g, '<strong><em>$1</em></strong>');
+      // Underscore emphasis only at word boundaries, so snake_case identifiers survive.
+      out = out.replace(/(^|[^\w_])__([^_\n]+)__(?!\w)/g, '$1<strong>$2</strong>');
+      out = out.replace(/(^|[^\w_])_([^_\n]+)_(?!\w)/g, '$1<em>$2</em>');
+      out = out.replace(/~~([^~\n]+)~~/g, '<del>$1</del>');
+
+      return out.replace(/@@CODE(\d+)@@/g, function(m, idx) {
+        return '<code class="md-code">' + escapeHtml(codes[idx]) + '</code>';
+      });
+    }
+
+    function isTableDivider(line) {
+      return line.indexOf('|') !== -1 &&
+        /^\s*\|?\s*:?-{2,}:?\s*(\|\s*:?-{2,}:?\s*)*\|?\s*$/.test(line);
+    }
+
+    function splitTableRow(line) {
+      var s = line.trim().replace(/\\\|/g, '@@PIPE@@');
+      if (s.charAt(0) === '|') s = s.slice(1);
+      if (s.charAt(s.length - 1) === '|') s = s.slice(0, -1);
+      var cells = s.split('|');
+      for (var i = 0; i < cells.length; i++) {
+        cells[i] = cells[i].replace(/@@PIPE@@/g, '|').trim();
+      }
+      return cells;
+    }
+
+    function tableAlignments(dividerLine) {
+      var cells = splitTableRow(dividerLine);
+      var out = [];
+      for (var i = 0; i < cells.length; i++) {
+        var c = cells[i];
+        var left = c.charAt(0) === ':';
+        var right = c.charAt(c.length - 1) === ':';
+        out.push(left && right ? 'center' : (right ? 'right' : 'left'));
+      }
+      return out;
+    }
+
+    // A nested bullet has to be indented at least this far to count as a new level.
+    var LIST_INDENT_STEP = 2;
+
+    // Block-level markdown: fenced code, GFM tables, headings, nested lists,
+    // blockquotes, rules and paragraphs.
+    function renderMarkdown(md, opts) {
+      opts = opts || {};
+      var src = (md === null || md === undefined) ? '' : String(md);
+      var lines = src.replace(/\r\n?/g, '\n').split('\n');
+      var html = '';
+      var para = [];
+      var quote = [];
+      var stack = [];
+
+      function flushPara() {
+        if (!para.length) return;
+        var text = para.join(' ').trim();
+        para = [];
+        if (!text) return;
+        // "**Term:** definition" earns the highlighted definition treatment. The
+        // rule is deliberately narrow — the old "any capitalised line with a colon"
+        // heuristic boxed ordinary sentences.
+        var def = text.match(/^\*\*([^*\n]{1,80}?)\*\*\s*:\s*(.+)$/) ||
+                  text.match(/^\*\*([^*\n]{1,80}?):\*\*\s*(.+)$/);
+        if (def) {
+          html += '<p class="md-def"><span class="md-def-term">' + renderInline(def[1]) +
+            ':</span> ' + renderInline(def[2]) + '</p>';
+        } else {
+          html += '<p>' + renderInline(text) + '</p>';
+        }
+      }
+
+      function flushQuote() {
+        if (!quote.length) return;
+        html += '<blockquote class="md-quote">' + renderInline(quote.join(' ')) + '</blockquote>';
+        quote = [];
+      }
+
+      function closeListsDeeperThan(indent) {
+        while (stack.length && stack[stack.length - 1].indent > indent) {
+          html += '</li></' + stack.pop().type + '>';
+        }
+      }
+
+      function closeAllLists() {
+        while (stack.length) {
+          html += '</li></' + stack.pop().type + '>';
+        }
+      }
+
+      function flushBlocks() {
+        flushPara();
+        flushQuote();
+        closeAllLists();
+      }
+
+      function addHeading(level, text) {
+        var badge = '';
+        var body = text;
+        var num = opts.badgeNumbers ? text.match(/^(\d{1,2})[.)]\s+(.*)$/) : null;
+        if (num) {
+          badge = '<span class="md-secnum">' + num[1] + '</span>';
+          body = num[2];
+        }
+        var tag = 'h' + Math.min(level + 1, 6);
+        html += '<' + tag + ' class="md-h">' + badge + '<span>' + renderInline(body) + '</span></' + tag + '>';
+      }
+
+      for (var i = 0; i < lines.length; i++) {
+        var raw = lines[i];
+        var line = raw.trim();
+
+        // ── Fenced code block ──
+        var fence = line.match(/^(```+|~~~+)\s*([A-Za-z0-9_+#-]*)\s*$/);
+        if (fence) {
+          flushBlocks();
+          var closer = fence[1].charAt(0) === '`' ? /^\s*```/ : /^\s*~~~/;
+          var lang = fence[2];
+          var code = [];
+          i++;
+          while (i < lines.length && !closer.test(lines[i])) {
+            code.push(lines[i]);
+            i++;
+          }
+          html += '<pre class="md-pre">' +
+            (lang ? '<span class="md-lang">' + escapeHtml(lang) + '</span>' : '') +
+            '<code>' + escapeHtml(code.join('\n')) + '</code></pre>';
+          continue;
+        }
+
+        // ── Blank line ends a paragraph or quote but leaves lists open ──
+        if (!line) {
+          flushPara();
+          flushQuote();
+          continue;
+        }
+
+        // ── GFM table ──
+        if (line.indexOf('|') !== -1 && i + 1 < lines.length && isTableDivider(lines[i + 1])) {
+          flushBlocks();
+          var align = tableAlignments(lines[i + 1]);
+          var head = splitTableRow(line);
+          var rows = [];
+          i += 2;
+          while (i < lines.length && lines[i].trim() && lines[i].indexOf('|') !== -1) {
+            rows.push(splitTableRow(lines[i]));
+            i++;
+          }
+          i--;
+          html += '<div class="md-table-wrap"><table class="md-table"><thead><tr>';
+          for (var h = 0; h < head.length; h++) {
+            html += '<th style="text-align:' + (align[h] || 'left') + '">' + renderInline(head[h]) + '</th>';
+          }
+          html += '</tr></thead><tbody>';
+          for (var r = 0; r < rows.length; r++) {
+            html += '<tr>';
+            // Pad or trim ragged rows so the table never loses its shape.
+            for (var c = 0; c < head.length; c++) {
+              html += '<td style="text-align:' + (align[c] || 'left') + '">' + renderInline(rows[r][c] || '') + '</td>';
+            }
+            html += '</tr>';
+          }
+          html += '</tbody></table></div>';
+          continue;
+        }
+
+        // ── Horizontal rule ──
+        if (/^([-*_])\s*(\1\s*){2,}$/.test(line)) {
+          flushBlocks();
+          html += '<hr class="md-hr">';
+          continue;
+        }
+
+        // ── ATX heading ──
+        var atx = line.match(/^(#{1,6})\s+(.+?)\s*#*$/);
+        if (atx) {
+          flushBlocks();
+          addHeading(atx[1].length, atx[2]);
+          continue;
+        }
+
+        // ── A line that is nothing but bold text reads as a sub-heading ──
+        var boldHead = line.match(/^\*\*([^*\n]{1,80})\*\*:?$/);
+        if (boldHead) {
+          flushBlocks();
+          addHeading(3, boldHead[1]);
+          continue;
+        }
+
+        // ── Blockquote ──
+        var q = line.match(/^>\s?(.*)$/);
+        if (q) {
+          flushPara();
+          closeAllLists();
+          quote.push(q[1]);
+          continue;
+        }
+        flushQuote();
+
+        // ── List item (indent decides nesting; tabs count as four spaces) ──
+        var indent = raw.replace(/\t/g, '    ').search(/\S/);
+        if (indent < 0) indent = 0;
+        var ul = line.match(/^[-*+•–]\s+(.*)$/);
+        var ol = line.match(/^(\d{1,3})[.)]\s+(.*)$/);
+        if (ul || ol) {
+          flushPara();
+          var type = ul ? 'ul' : 'ol';
+          var itemText = ul ? ul[1] : ol[2];
+          closeListsDeeperThan(indent + 1);
+          var top = stack.length ? stack[stack.length - 1] : null;
+          if (!top || indent >= top.indent + LIST_INDENT_STEP) {
+            // Opening a nested list while the parent <li> is still open.
+            stack.push({ type: type, indent: indent });
+            html += '<' + type + ' class="md-list">';
+          } else if (top.type !== type) {
+            html += '</li></' + stack.pop().type + '>';
+            stack.push({ type: type, indent: indent });
+            html += '<' + type + ' class="md-list">';
+          } else {
+            html += '</li>';
+          }
+          html += '<li>' + renderInline(itemText);
+          continue;
+        }
+
+        // ── Wrapped continuation of the list item above ──
+        if (stack.length && indent >= stack[stack.length - 1].indent + LIST_INDENT_STEP) {
+          html += ' ' + renderInline(line);
+          continue;
+        }
+
+        // ── Ordinary paragraph text ──
+        closeAllLists();
+        para.push(line);
+      }
+
+      flushBlocks();
+      return html;
+    }
+
+    // When a structured parse finds nothing, show the raw material rather than an
+    // empty panel.
+    function fallbackRender(content, note) {
+      return '<div class="formatted-output md-body">' +
+        '<p class="md-warn">' + escapeHtml(note) + '</p>' +
+        renderMarkdown(content) + '</div>';
+    }
+
+    // ── Shared line patterns ──
+    // Each tolerates the bold/italic markers models wrap labels in ("**Answer:** B").
+    var RE_DIFFICULTY = /^[#*_\s]*(Easy|Medium|Hard)\b[^?]{0,30}$/i;
+    var RE_QUESTION   = /^[*_\s]*(?:Q|Question|Problem)\s*(\d{1,3})\s*[.):]?\s*[*_]*\s*(.*)$/i;
+    var RE_OPTION     = /^[*_\s]*\(?([A-D])[).:]\s*[*_]*\s*(.+)$/i;
+    var RE_ANSWER     = /^[*_\s]*(?:Answer|Correct\s*Answer|Correct)[*_\s]*:[*_\s]*(.*)$/i;
+    var RE_EXPLAIN    = /^[*_\s]*(?:Explanation|Reason|Why)[*_\s]*:[*_\s]*(.*)$/i;
+    var RE_SOLUTION   = /^[*_\s]*(?:Solution|Working|Answer)[*_\s]*:[*_\s]*(.*)$/i;
+    var RE_FRONT      = /^[*_\s]*(?:Front|Term|Q|Question)[*_\s]*:[*_\s]*(.*)$/i;
+    var RE_BACK       = /^[*_\s]*(?:Back|Definition|A|Answer)[*_\s]*:[*_\s]*(.*)$/i;
+
+    function readDifficulty(line) {
+      var m = line.match(RE_DIFFICULTY);
+      return m ? m[1].toLowerCase() : '';
+    }
+
+    // Answers arrive as "B", "(B)", "**B**", "B) Chlorophyll" or just the option
+    // text. Anchoring at the start avoids matching a stray letter inside a word.
+    function normalizeAnswer(ans, options) {
+      var s = String(ans || '').replace(/[*_`]/g, '').trim();
+      var m = s.match(/^\(?([A-D])\)?[.):]?(\s|$)/i);
+      if (m) return m[1].toUpperCase();
+      for (var i = 0; i < options.length; i++) {
+        if (options[i].text && s && options[i].text.toLowerCase() === s.toLowerCase()) {
+          return options[i].letter;
+        }
+      }
+      return '';
+    }
+
+    function difficultyHeader(diff) {
+      var label = diff.charAt(0).toUpperCase() + diff.slice(1);
+      return '<div style="text-align: center; margin: 24px 0 16px 0;">' +
+        '<span class="difficulty-badge ' + diff + '">' + label + '</span></div>';
     }
 
     // ──────────────────────────────
     //  FORMAT: NOTES
     // ──────────────────────────────
     function formatNotes(content) {
-      var formatted = '<div class="formatted-output">';
-      var lines = content.split('\n');
-      var inList = false;
-      var sectionCount = 0;
+      var body = renderMarkdown(content, { badgeNumbers: true });
+      if (!body) return fallbackRender(content, 'Could not format this response.');
+      return '<div class="formatted-output md-body">' + body + '</div>';
+    }
 
-      for (var i = 0; i < lines.length; i++) {
-        var line = lines[i].trim();
-        if (!line) {
-          if (inList) {
-            formatted += '</ul>';
-            inList = false;
-          }
-          formatted += '<div style="height: 8px;"></div>';
-          continue;
-        }
-
-        // Headings with #
-        if (line.match(/^#{1,6}\s/)) {
-          if (inList) {
-            formatted += '</ul>';
-            inList = false;
-          }
-          var level = line.match(/^#+/)[0].length;
-          var text = line.replace(/^#+\s/, '').trim();
-          text = parseMarkdown(text);
-          formatted += '<h' + (level + 1) + ' style="color: #1d9bf0; margin: 20px 0 12px 0; border-bottom: 2px solid rgba(29, 155, 240, 0.3); padding-bottom: 8px;">' + text + '</h' + (level + 1) + '>';
-        }
-        // Main numbered sections like "1. Key Concepts"
-        else if (line.match(/^[1-9]\.\s/) && !line.match(/^[1-9]\.\s+.*[-–•*]/)) {
-          var isMainSection = line.match(/^[1-9]\.\s+(Introduction|Historical|Key Concepts|Detailed|Important|Applications|Common|Advanced|Summary|Additional)/i);
-
-          if (isMainSection) {
-            if (inList) {
-              formatted += '</ul>';
-              inList = false;
-            }
-            sectionCount++;
-            var sectionText = line.replace(/^[1-9]\.\s/, '').trim();
-            sectionText = parseMarkdown(sectionText);
-            formatted += '<h3 style="color: #71ebf5; margin: 18px 0 12px 0; font-size: 1.1rem; display: flex; align-items: center; gap: 8px;"><span style="color: #1d9bf0; background: rgba(29, 155, 240, 0.2); width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.9rem;">' + line.match(/^[1-9]/)[0] + '</span>' + sectionText + '</h3>';
-          } else {
-            if (!inList) {
-              formatted += '<ul style="margin: 10px 0 10px 20px; list-style: none;">';
-              inList = true;
-            }
-            var itemText = line.replace(/^\d+\.\s/, '').trim();
-            itemText = parseMarkdown(itemText);
-            formatted += '<li style="margin: 8px 0; padding-left: 20px; position: relative; line-height: 1.7;"><span style="position: absolute; left: 0; color: #1d9bf0;">▸</span>' + itemText + '</li>';
-          }
-        }
-        // Sub-items with dashes or bullets
-        else if (line.match(/^[-–•*]\s/) || line.match(/^\s+[-–•*]\s/)) {
-          if (!inList) {
-            formatted += '<ul style="margin: 10px 0 10px 20px; list-style: none;">';
-            inList = true;
-          }
-          var itemText = line.replace(/^\s*[-–•*]\s/, '').trim();
-          itemText = parseMarkdown(itemText);
-          formatted += '<li style="margin: 8px 0; padding-left: 20px; position: relative; line-height: 1.7;"><span style="position: absolute; left: 0; color: #1d9bf0;">▸</span>' + itemText + '</li>';
-        }
-        // Definition lines
-        else if (line.match(/^[A-Z].*:/) || line.match(/^\*\*[^*]+\*\*:/)) {
-          var defText = parseMarkdown(line);
-          formatted += '<p style="margin: 10px 0; padding: 8px; background: rgba(113, 235, 245, 0.05); border-left: 3px solid #71ebf5; border-radius: 4px;">' + defText + '</p>';
-        }
-        else {
-          if (inList) {
-            formatted += '</ul>';
-            inList = false;
-          }
-          var pText = parseMarkdown(line);
-          formatted += '<p style="margin: 10px 0; line-height: 1.8; color: #bab9b4;">' + pText + '</p>';
-        }
-      }
-
-      if (inList) {
-        formatted += '</ul>';
-      }
-      formatted += '</div>';
-      return formatted;
+    // ──────────────────────────────
+    //  FORMAT: SUMMARY
+    // ──────────────────────────────
+    function formatSummary(content) {
+      var body = renderMarkdown(content, { badgeNumbers: true });
+      if (!body) return fallbackRender(content, 'Could not format this response.');
+      return '<div class="formatted-output md-body">' + body + '</div>';
     }
 
     // ──────────────────────────────
     //  FORMAT: MCQ (Interactive)
     // ──────────────────────────────
-    function formatMCQ(content) {
-      // Reset state
-      mcqState = { total: 0, correct: 0, answered: 0, easyCorrect: 0, easyTotal: 0, medCorrect: 0, medTotal: 0, hardCorrect: 0, hardTotal: 0 };
-
-      var formatted = '<div class="formatted-output">';
-      formatted += '<h2 style="color: #1d9bf0; margin: 0 0 20px 0; font-size: 1.4rem; border-bottom: 2px solid rgba(29, 155, 240, 0.3); padding-bottom: 10px;">📝 Multiple Choice Quiz — Select Your Answers</h2>';
-
-      var lines = content.split('\n');
+    function parseMCQ(content) {
+      var lines = String(content || '').replace(/\r\n?/g, '\n').split('\n');
       var questions = [];
-      var currentQ = null;
-      var currentDifficulty = 'medium';
+      var current = null;
+      var difficulty = 'medium';
+      var collecting = '';
 
       for (var i = 0; i < lines.length; i++) {
         var line = lines[i].trim();
-        if (!line) continue;
+        if (!line) { collecting = ''; continue; }
 
-        // Detect difficulty headers
-        if (line.match(/^##?\s*Easy/i) || line.match(/^Easy\s*$/i) || line.match(/^\*\*Easy\*\*/i)) {
-          currentDifficulty = 'easy';
-          continue;
-        }
-        if (line.match(/^##?\s*Medium/i) || line.match(/^Medium\s*$/i) || line.match(/^\*\*Medium\*\*/i)) {
-          currentDifficulty = 'medium';
-          continue;
-        }
-        if (line.match(/^##?\s*Hard/i) || line.match(/^Hard\s*$/i) || line.match(/^\*\*Hard\*\*/i)) {
-          currentDifficulty = 'hard';
+        var diff = readDifficulty(line);
+        if (diff && !RE_OPTION.test(line)) {
+          difficulty = diff;
+          collecting = '';
           continue;
         }
 
-        if (line.match(/^Q\d+\.|^Question\s+\d+/i)) {
-          if (currentQ) questions.push(currentQ);
-          currentQ = { q: line.replace(/^Q\d+\.\s?|^Question\s+\d+\.?\s?/i, ''), options: [], answer: '', explanation: '', difficulty: currentDifficulty };
-        } else if (currentQ && line.match(/^[A-D]\)\s/)) {
-          currentQ.options.push(line);
-        } else if (currentQ && line.match(/^Answer:|^Correct:/i)) {
-          currentQ.answer = line.replace(/^Answer:\s?|^Correct:\s?/i, '').trim();
-        } else if (currentQ && line.match(/^Explanation:/i)) {
-          currentQ.explanation = line.replace(/^Explanation:\s?/i, '').trim();
+        var qm = line.match(RE_QUESTION);
+        if (qm) {
+          if (current) questions.push(current);
+          current = { q: qm[2].trim(), options: [], answer: '', explanation: '', difficulty: difficulty };
+          collecting = 'q';
+          continue;
+        }
+        if (!current) continue;
+
+        var om = line.match(RE_OPTION);
+        if (om) {
+          current.options.push({ letter: om[1].toUpperCase(), text: om[2].trim() });
+          collecting = 'option';
+          continue;
+        }
+
+        var am = line.match(RE_ANSWER);
+        if (am) {
+          current.answer = am[1].trim();
+          collecting = 'answer';
+          continue;
+        }
+
+        var em = line.match(RE_EXPLAIN);
+        if (em) {
+          current.explanation = em[1].trim();
+          collecting = 'explanation';
+          continue;
+        }
+
+        // Wrapped continuation of whatever we were last reading.
+        if (collecting === 'explanation') current.explanation += ' ' + line;
+        else if (collecting === 'q') current.q += ' ' + line;
+        else if (collecting === 'option' && current.options.length) {
+          current.options[current.options.length - 1].text += ' ' + line;
         }
       }
-      if (currentQ) questions.push(currentQ);
+      if (current) questions.push(current);
 
-      mcqState.total = questions.length;
+      for (var k = 0; k < questions.length; k++) {
+        questions[k].answer = normalizeAnswer(questions[k].answer, questions[k].options);
+      }
+      return questions;
+    }
 
-      // Count per-difficulty totals
+    function formatMCQ(content) {
+      mcqState = { total: 0, correct: 0, answered: 0, easyCorrect: 0, easyTotal: 0, medCorrect: 0, medTotal: 0, hardCorrect: 0, hardTotal: 0 };
+
+      var questions = parseMCQ(content);
+      if (!questions.length) {
+        return fallbackRender(content, 'No questions could be read from this response — showing it as plain notes.');
+      }
+
+      var formatted = '<div class="formatted-output md-body">';
+      formatted += '<h2 class="md-h">📝 Multiple Choice Quiz — Select Your Answers</h2>';
+
+      // Only questions with a usable answer key are graded; the rest still render
+      // rather than counting every click as wrong.
       questions.forEach(function(q) {
+        q.gradable = !!q.answer && q.options.length >= 2;
+        if (!q.gradable) return;
+        mcqState.total++;
         if (q.difficulty === 'easy') mcqState.easyTotal++;
         else if (q.difficulty === 'medium') mcqState.medTotal++;
         else mcqState.hardTotal++;
@@ -1138,16 +1945,13 @@
 
       var prevDifficulty = '';
       questions.forEach(function(qObj, idx) {
-        // Render difficulty section header
         if (qObj.difficulty !== prevDifficulty) {
           prevDifficulty = qObj.difficulty;
-          var diffLabel = qObj.difficulty.charAt(0).toUpperCase() + qObj.difficulty.slice(1);
-          formatted += '<div style="text-align: center; margin: 24px 0 16px 0;"><span class="difficulty-badge ' + qObj.difficulty + '">' + diffLabel + '</span></div>';
+          formatted += difficultyHeader(qObj.difficulty);
         }
         formatted += buildInteractiveMCQ(qObj, idx);
       });
 
-      // Grading container (hidden until all answered)
       formatted += '<div id="mcqGradePanel" class="grade-panel" style="display:none;"></div>';
       formatted += '</div>';
       return formatted;
@@ -1155,27 +1959,29 @@
 
     function buildInteractiveMCQ(qObj, idx) {
       var qId = 'mcq_' + idx;
-      var html = '<div id="' + qId + '_wrap" style="background: linear-gradient(135deg, rgba(29, 155, 240, 0.06) 0%, rgba(113, 235, 245, 0.03) 100%); border: 2px solid #2f3336; border-radius: 10px; padding: 16px; margin: 14px 0;">';
-      html += '<p style="color: #1d9bf0; font-weight: 600; font-size: 1rem; margin-bottom: 14px;">Q' + (idx + 1) + '. ' + parseMarkdown(qObj.q) + '</p>';
+      var html = '<div id="' + qId + '_wrap" class="q-card">';
+      html += '<p class="q-title">Q' + (idx + 1) + '. ' + renderInline(qObj.q) + '</p>';
 
       qObj.options.forEach(function(opt) {
-        var letter = opt[0];
-        var optText = opt.replace(/^[A-D]\)\s?/, '').trim();
-        optText = parseMarkdown(optText);
-        html += '<div class="mcq-option" id="' + qId + '_' + letter + '" data-qid="' + qId + '" data-letter="' + letter + '" data-answer="' + (qObj.answer ? qObj.answer.charAt(0).toUpperCase() : '') + '" data-difficulty="' + qObj.difficulty + '" onclick="handleMCQClick(this)">';
-        html += '<div><span style="color: #1d9bf0; font-weight: 600; margin-right: 10px;">' + letter + ')</span><span>' + optText + '</span></div>';
-        html += '<span class="mcq-icon" style="font-weight: bold; font-size: 1.1rem;"></span>';
+        var attrs = ' data-qid="' + qId + '" data-letter="' + opt.letter +
+          '" data-answer="' + escapeHtml(qObj.answer) +
+          '" data-difficulty="' + qObj.difficulty + '"';
+        var click = qObj.gradable ? ' onclick="handleMCQClick(this)"' : '';
+        html += '<div class="mcq-option' + (qObj.gradable ? '' : ' mcq-inert') + '" id="' + qId + '_' + opt.letter + '"' + attrs + click + '>';
+        html += '<div><span class="mcq-letter">' + opt.letter + ')</span><span>' + renderInline(opt.text) + '</span></div>';
+        html += '<span class="mcq-icon"></span>';
         html += '</div>';
       });
 
-      // Feedback area
-      html += '<div class="mcq-feedback" id="' + qId + '_feedback"></div>';
-
-      // Explanation (hidden until answered)
-      if (qObj.explanation) {
-        html += '<div id="' + qId + '_explanation" style="display:none; padding: 10px 14px; border-radius: 6px; margin: 10px 0; background: rgba(113, 235, 245, 0.08); border-left: 4px solid #71ebf5; color: #71ebf5; font-size: 0.9rem;">ℹ️ ' + parseMarkdown(qObj.explanation) + '</div>';
+      if (!qObj.gradable) {
+        html += '<p class="md-warn">This question came back without a usable answer key, so it is not graded.</p>';
       }
 
+      html += '<div class="mcq-feedback" id="' + qId + '_feedback"></div>';
+      if (qObj.explanation) {
+        html += '<div id="' + qId + '_explanation" class="mcq-explain" style="display:none;">ℹ️ ' +
+          renderInline(qObj.explanation) + '</div>';
+      }
       html += '</div>';
       return html;
     }
@@ -1185,15 +1991,14 @@
       var selectedLetter = el.getAttribute('data-letter');
       var correctLetter = el.getAttribute('data-answer');
       var difficulty = el.getAttribute('data-difficulty');
+      if (!correctLetter) return;
 
-      // Prevent re-answering
       var allOpts = document.querySelectorAll('[data-qid="' + qId + '"]');
       if (allOpts[0].classList.contains('mcq-answered')) return;
 
       var isCorrect = selectedLetter === correctLetter;
 
-      // Mark all options as answered
-      allOpts.forEach(function(opt) {
+      Array.prototype.forEach.call(allOpts, function(opt) {
         opt.classList.add('mcq-answered');
         var optLetter = opt.getAttribute('data-letter');
         if (optLetter === correctLetter) {
@@ -1209,7 +2014,6 @@
         }
       });
 
-      // Update state
       mcqState.answered++;
       if (isCorrect) {
         mcqState.correct++;
@@ -1218,7 +2022,6 @@
         else mcqState.hardCorrect++;
       }
 
-      // Show feedback
       var feedback = document.getElementById(qId + '_feedback');
       feedback.classList.add('show');
       if (isCorrect) {
@@ -1226,24 +2029,22 @@
         feedback.innerHTML = '✓ Correct!';
       } else {
         feedback.classList.add('wrong');
-        feedback.innerHTML = '✗ Wrong — the correct answer is <strong>' + correctLetter + '</strong>';
+        feedback.innerHTML = '✗ Wrong — the correct answer is <strong>' + escapeHtml(correctLetter) + '</strong>';
       }
 
-      // Show explanation
       var expEl = document.getElementById(qId + '_explanation');
       if (expEl) expEl.style.display = 'block';
 
-      // Highlight the question border
       var wrap = document.getElementById(qId + '_wrap');
       wrap.style.borderColor = isCorrect ? '#22c55e' : '#ef4444';
 
-      // Check if all questions answered → show grade
-      if (mcqState.answered === mcqState.total) {
+      if (mcqState.total > 0 && mcqState.answered >= mcqState.total) {
         setTimeout(showMCQGrade, 600);
       }
     };
 
     function showMCQGrade() {
+      if (!mcqState.total) return;
       var pct = Math.round((mcqState.correct / mcqState.total) * 100);
       var grade, gradeColor;
       if (pct >= 90) { grade = 'A+'; gradeColor = '#22c55e'; }
@@ -1254,6 +2055,7 @@
       else { grade = 'F'; gradeColor = '#ef4444'; }
 
       var panel = document.getElementById('mcqGradePanel');
+      if (!panel) return;
       panel.style.display = 'block';
       panel.innerHTML = '<h2>🎓 Your Score</h2>' +
         '<div class="grade-circle" style="border-color: ' + gradeColor + '; color: ' + gradeColor + '; background: ' + gradeColor + '15;">' +
@@ -1275,68 +2077,58 @@
     }
 
     // ──────────────────────────────
-    //  FORMAT: PRACTICE (with grading)
+    //  FORMAT: PRACTICE (solve & reveal)
     // ──────────────────────────────
+    function parsePractice(content) {
+      var lines = String(content || '').replace(/\r\n?/g, '\n').split('\n');
+      var questions = [];
+      var current = null;
+      var difficulty = 'medium';
+
+      for (var i = 0; i < lines.length; i++) {
+        var raw = lines[i];
+        var line = raw.trim();
+
+        var diff = line ? readDifficulty(line) : '';
+        if (diff) { difficulty = diff; continue; }
+
+        var qm = line.match(RE_QUESTION);
+        if (qm) {
+          if (current) questions.push(current);
+          current = { question: qm[2].trim(), solution: [], difficulty: difficulty, inSolution: false };
+          continue;
+        }
+        if (!current) continue;
+
+        // Anchored at the start of the line, so a question that merely contains
+        // the word "answer" no longer splits early.
+        var sm = line.match(RE_SOLUTION);
+        if (sm && !current.inSolution) {
+          current.inSolution = true;
+          if (sm[1].trim()) current.solution.push(sm[1].trim());
+          continue;
+        }
+
+        if (current.inSolution) {
+          current.solution.push(raw);
+        } else if (line) {
+          current.question += ' ' + line;
+        }
+      }
+      if (current) questions.push(current);
+      return questions;
+    }
+
     function formatPractice(content) {
       practiceState = { total: 0, revealed: 0, easyTotal: 0, medTotal: 0, hardTotal: 0 };
 
-      var formatted = '<div class="formatted-output">';
-      formatted += '<h2 style="color: #1d9bf0; margin: 0 0 20px 0; font-size: 1.4rem; border-bottom: 2px solid rgba(29, 155, 240, 0.3); padding-bottom: 10px;">📝 Practice Questions — Solve & Reveal</h2>';
-
-      var lines = content.split('\n');
-      var questions = [];
-      var currentQ = null;
-      var currentDifficulty = 'medium';
-
-      for (var i = 0; i < lines.length; i++) {
-        var line = lines[i].trim();
-        if (!line) continue;
-
-        // Detect difficulty headers
-        if (line.match(/^##?\s*Easy/i) || line.match(/^Easy\s*$/i) || line.match(/^\*\*Easy\*\*/i)) {
-          currentDifficulty = 'easy';
-          continue;
-        }
-        if (line.match(/^##?\s*Medium/i) || line.match(/^Medium\s*$/i) || line.match(/^\*\*Medium\*\*/i)) {
-          currentDifficulty = 'medium';
-          continue;
-        }
-        if (line.match(/^##?\s*Hard/i) || line.match(/^Hard\s*$/i) || line.match(/^\*\*Hard\*\*/i)) {
-          currentDifficulty = 'hard';
-          continue;
-        }
-
-        // Question line
-        if (line.match(/^Q\d+\.|^Question\s+\d+|^Problem\s+\d+/i)) {
-          if (currentQ) questions.push(currentQ);
-          var qText = line.replace(/^Q\d+\.?\s?|^Question\s+\d+\.?\s?|^Problem\s+\d+[:\s]?|^\d+\.\s+/, '').trim();
-          currentQ = { question: '', solution: [], difficulty: currentDifficulty, inSolution: false };
-          
-          var solMatch = qText.match(/(Solution:|Answer:)\s*(.*)/i);
-          if (solMatch) {
-             currentQ.question = qText.substring(0, solMatch.index).trim();
-             var solText = solMatch[2].trim();
-             if (solText) currentQ.solution.push(solText);
-             currentQ.inSolution = true;
-          } else {
-             currentQ.question = qText;
-          }
-        }
-        else if (currentQ && !currentQ.inSolution && line.match(/(Solution:|Answer:)/i)) {
-          var solMatch = line.match(/(Solution:|Answer:)\s*(.*)/i);
-          currentQ.question += ' ' + line.substring(0, solMatch.index).trim();
-          var solText = solMatch[2].trim();
-          if (solText) currentQ.solution.push(solText);
-          currentQ.inSolution = true;
-        }
-        else if (currentQ && currentQ.inSolution) {
-          currentQ.solution.push(line);
-        }
-        else if (currentQ) {
-          currentQ.question += ' ' + line;
-        }
+      var questions = parsePractice(content);
+      if (!questions.length) {
+        return fallbackRender(content, 'No practice questions could be read from this response — showing it as plain notes.');
       }
-      if (currentQ) questions.push(currentQ);
+
+      var formatted = '<div class="formatted-output md-body">';
+      formatted += '<h2 class="md-h">📝 Practice Questions — Solve &amp; Reveal</h2>';
 
       practiceState.total = questions.length;
       questions.forEach(function(q) {
@@ -1349,27 +2141,21 @@
       questions.forEach(function(qObj, idx) {
         if (qObj.difficulty !== prevDifficulty) {
           prevDifficulty = qObj.difficulty;
-          var diffLabel = qObj.difficulty.charAt(0).toUpperCase() + qObj.difficulty.slice(1);
-          formatted += '<div style="text-align: center; margin: 24px 0 16px 0;"><span class="difficulty-badge ' + qObj.difficulty + '">' + diffLabel + '</span></div>';
+          formatted += difficultyHeader(qObj.difficulty);
         }
 
         var pId = 'pq_' + idx;
-        formatted += '<div style="background: linear-gradient(135deg, rgba(29, 155, 240, 0.06) 0%, rgba(113, 235, 245, 0.03) 100%); border: 2px solid #2f3336; border-radius: 10px; padding: 16px; margin: 14px 0;">';
-        formatted += '<p style="color: #1d9bf0; font-weight: 600; margin-bottom: 10px;">📝 Q' + (idx + 1) + '.</p>';
-        formatted += '<p style="color: #e7e9ea; margin-bottom: 12px; line-height: 1.7;">' + parseMarkdown(qObj.question) + '</p>';
-
-        // Solution (hidden)
-        formatted += '<button onclick="revealPracticeSolution(\'' + pId + '\')" id="' + pId + '_btn" style="background: rgba(29, 155, 240, 0.15); border: 1px solid #1d9bf0; color: #1d9bf0; padding: 8px 18px; border-radius: 8px; cursor: pointer; font-size: 0.85rem; font-weight: 500; transition: all 0.3s ease; margin-bottom: 8px;">👁 Show Solution</button>';
-        formatted += '<div id="' + pId + '_sol" style="display:none; background: rgba(34, 197, 94, 0.08); border: 1px solid rgba(34, 197, 94, 0.3); border-radius: 8px; padding: 14px; margin-top: 10px;">';
-        formatted += '<p style="color: #22c55e; font-weight: 600; margin-bottom: 8px;">✓ Solution:</p>';
-        qObj.solution.forEach(function(solLine) {
-          formatted += '<p style="color: #bab9b4; margin: 6px 0; padding-left: 12px; border-left: 2px solid rgba(34, 197, 94, 0.4); line-height: 1.7;">' + parseMarkdown(solLine) + '</p>';
-        });
-        formatted += '</div>';
-        formatted += '</div>';
+        formatted += '<div class="q-card">';
+        formatted += '<p class="q-title">📝 Q' + (idx + 1) + '.</p>';
+        formatted += '<div class="q-body">' + renderMarkdown(qObj.question) + '</div>';
+        formatted += '<button onclick="revealPracticeSolution(\'' + pId + '\')" id="' + pId + '_btn" class="reveal-btn">👁 Show Solution</button>';
+        formatted += '<div id="' + pId + '_sol" class="sol-box" style="display:none;">';
+        formatted += '<p class="sol-title">✓ Solution</p>';
+        // Rendered as one markdown block so steps, formulas and tables survive.
+        formatted += '<div class="md-body">' + renderMarkdown(qObj.solution.join('\n')) + '</div>';
+        formatted += '</div></div>';
       });
 
-      // Grading summary for practice
       formatted += '<div id="practiceGradePanel" class="grade-panel" style="margin-top: 24px;">';
       formatted += '<h2>📊 Progress Tracker</h2>';
       formatted += '<p style="color: #71767b; margin: 8px 0;" id="practiceProgress">Solutions revealed: 0 / ' + practiceState.total + '</p>';
@@ -1377,8 +2163,7 @@
         '<div class="grade-breakdown-item"><div class="bd-label" style="color: #22c55e;">Easy</div><div class="bd-value" style="color: #e7e9ea;">' + practiceState.easyTotal + ' Qs</div></div>' +
         '<div class="grade-breakdown-item"><div class="bd-label" style="color: #fbbf24;">Medium</div><div class="bd-value" style="color: #e7e9ea;">' + practiceState.medTotal + ' Qs</div></div>' +
         '<div class="grade-breakdown-item"><div class="bd-label" style="color: #ef4444;">Hard</div><div class="bd-value" style="color: #e7e9ea;">' + practiceState.hardTotal + ' Qs</div></div>' +
-      '</div>';
-      formatted += '</div>';
+      '</div></div>';
 
       formatted += '</div>';
       return formatted;
@@ -1387,21 +2172,12 @@
     window.revealPracticeSolution = function(pId) {
       var sol = document.getElementById(pId + '_sol');
       var btn = document.getElementById(pId + '_btn');
-      if (sol.style.display === 'none') {
-        sol.style.display = 'block';
-        btn.textContent = '🙈 Hide Solution';
-        btn.style.background = 'rgba(34, 197, 94, 0.15)';
-        btn.style.borderColor = '#22c55e';
-        btn.style.color = '#22c55e';
-        practiceState.revealed++;
-      } else {
-        sol.style.display = 'none';
-        btn.textContent = '👁 Show Solution';
-        btn.style.background = 'rgba(29, 155, 240, 0.15)';
-        btn.style.borderColor = '#1d9bf0';
-        btn.style.color = '#1d9bf0';
-        practiceState.revealed--;
-      }
+      var hidden = sol.style.display === 'none';
+      sol.style.display = hidden ? 'block' : 'none';
+      btn.textContent = hidden ? '🙈 Hide Solution' : '👁 Show Solution';
+      btn.classList.toggle('revealed', hidden);
+      practiceState.revealed += hidden ? 1 : -1;
+      if (practiceState.revealed < 0) practiceState.revealed = 0;
       var progressEl = document.getElementById('practiceProgress');
       if (progressEl) {
         progressEl.textContent = 'Solutions revealed: ' + practiceState.revealed + ' / ' + practiceState.total;
@@ -1409,170 +2185,121 @@
     };
 
     // ──────────────────────────────
-    //  FORMAT: FLASHCARDS
+    //  FORMAT: FLASHCARDS (click to flip)
     // ──────────────────────────────
-    function formatFlashcards(content) {
-      var formatted = '<div class="formatted-output">';
+    function parseFlashcards(content) {
+      var lines = String(content || '').replace(/\r\n?/g, '\n').split('\n');
       var cards = [];
-      var lines = content.split('\n');
-      var currentCard = {};
+      var current = null;
+      var side = '';
 
       for (var i = 0; i < lines.length; i++) {
         var line = lines[i].trim();
         if (!line) continue;
 
-        if (line.match(/^Front:/i)) {
-          if (currentCard.front && currentCard.back) {
-            cards.push(currentCard);
-          }
-          currentCard = { front: line.replace(/^Front:\s?/i, '').trim(), back: '' };
-        } else if (line.match(/^Back:/i)) {
-          currentCard.back = line.replace(/^Back:\s?/i, '').trim();
-        } else if (currentCard.front && !currentCard.back) {
-          currentCard.front += ' ' + line;
-        } else if (currentCard.front && currentCard.back) {
-          currentCard.back += ' ' + line;
+        var fm = line.match(RE_FRONT);
+        if (fm) {
+          if (current && current.front && current.back) cards.push(current);
+          current = { front: fm[1].trim(), back: '' };
+          side = 'front';
+          continue;
         }
-      }
+        if (!current) continue;
 
-      if (currentCard.front && currentCard.back) {
-        cards.push(currentCard);
-      }
-
-      formatted += '<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0;">';
-      for (var j = 0; j < cards.length; j++) {
-        var card = cards[j];
-        var frontText = parseMarkdown(card.front);
-        var backText = parseMarkdown(card.back);
-
-        formatted += '<div class="flashcard" style="background: linear-gradient(135deg, #1d9bf0 0%, #1a8cd8 100%); border-radius: 12px; padding: 20px; color: #fff; min-height: 140px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; box-shadow: 0 8px 24px rgba(29, 155, 240, 0.2); font-weight: 500; line-height: 1.6; cursor: pointer; transition: transform 0.3s;">';
-        formatted += '<div style="font-size: 0.8rem; color: rgba(255,255,255,0.7); margin-bottom: 8px; font-weight: 400;">Card ' + (j + 1) + ' (Front)</div>';
-        formatted += '<div style="font-size: 1rem;">' + frontText + '</div></div>';
-
-        formatted += '<div class="flashcard back" style="background: linear-gradient(135deg, rgba(113, 235, 245, 0.2) 0%, rgba(29, 155, 240, 0.1) 100%); border: 2px solid #71ebf5; border-radius: 12px; padding: 20px; color: #71ebf5; min-height: 140px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; font-weight: 500; line-height: 1.6; cursor: pointer; transition: transform 0.3s;">';
-        formatted += '<div style="font-size: 0.8rem; color: rgba(113, 235, 245, 0.7); margin-bottom: 8px; font-weight: 400;">Card ' + (j + 1) + ' (Answer)</div>';
-        formatted += '<div style="font-size: 1rem;">' + backText + '</div></div>';
-      }
-      formatted += '</div></div>';
-      return formatted;
-    }
-
-    // ──────────────────────────────
-    //  FORMAT: SUMMARY
-    // ──────────────────────────────
-    function formatSummary(content) {
-      var formatted = '<div class="formatted-output">';
-      var lines = content.split('\n');
-      var inList = false;
-      var listType = '';
-
-      for (var i = 0; i < lines.length; i++) {
-        var line = lines[i].trim();
-        if (!line) {
-          if (inList) {
-            formatted += listType === 'ul' ? '</ul>' : '</ol>';
-            inList = false;
-          }
-          formatted += '<div style="height: 8px;"></div>';
+        var bm = line.match(RE_BACK);
+        if (bm) {
+          current.back = bm[1].trim();
+          side = 'back';
           continue;
         }
 
-        // Headings with # or bolded section titles
-        if (line.match(/^#{1,6}\s/) || (line.match(/^\*\*[^*]+\*\*$/) && line.length < 50) || line.match(/^(Must-Know|Quick Facts|Exam Questions|Mnemonics|Key Points|Important|Key Formulas|Key Terms|Tips and Tricks)/i)) {
-          if (inList) {
-            formatted += listType === 'ul' ? '</ul>' : '</ol>';
-            inList = false;
-          }
-          var level = line.match(/^#+/) ? line.match(/^#+/)[0].length : 2;
-          var text = line.replace(/^#+\s/, '').replace(/\*\*/g, '').trim();
-          text = parseMarkdown(text);
-          formatted += '<h' + (level + 1) + ' style="color: #1d9bf0; margin: 24px 0 12px 0; border-bottom: 2px solid rgba(29, 155, 240, 0.2); padding-bottom: 8px;">' + text + '</h' + (level + 1) + '>';
-        }
-        // Sub-items with dashes or bullets
-        else if (line.match(/^[-–•*]\s/) || line.match(/^\s+[-–•*]\s/)) {
-          if (!inList || listType !== 'ul') {
-            if (inList) formatted += '</ol>';
-            formatted += '<ul style="margin: 10px 0 10px 20px; list-style: none;">';
-            inList = true;
-            listType = 'ul';
-          }
-          var itemText = line.replace(/^\s*[-–•*]\s/, '').trim();
-          itemText = parseMarkdown(itemText);
-          formatted += '<li style="margin: 8px 0; padding-left: 20px; position: relative; line-height: 1.7; color: #e7e9ea;"><span style="position: absolute; left: 0; color: #1d9bf0;">•</span>' + itemText + '</li>';
-        }
-        // Numbered list
-        else if (line.match(/^\d+\.\s/)) {
-          if (!inList || listType !== 'ol') {
-            if (inList) formatted += '</ul>';
-            formatted += '<ol style="margin: 10px 0 10px 40px; color: #1d9bf0; line-height: 1.7;">';
-            inList = true;
-            listType = 'ol';
-          }
-          var itemText = line.replace(/^\d+\.\s/, '').trim();
-          itemText = parseMarkdown(itemText);
-          formatted += '<li style="margin: 8px 0; color: #e7e9ea;"><span style="color: #e7e9ea;">' + itemText + '</span></li>';
-        }
-        // Definition lines (e.g. "Term: Definition")
-        else if (line.match(/^[A-Za-z\s]+:/) || line.match(/^\*\*[^*]+\*\*:/)) {
-          if (inList) {
-            formatted += listType === 'ul' ? '</ul>' : '</ol>';
-            inList = false;
-          }
-          var defText = parseMarkdown(line);
-          formatted += '<p style="margin: 12px 0; padding: 12px 16px; background: rgba(29, 155, 240, 0.05); border-left: 4px solid #1d9bf0; border-radius: 6px; color: #e7e9ea;">' + defText + '</p>';
-        }
-        // Normal paragraph
-        else {
-          if (inList) {
-            formatted += listType === 'ul' ? '</ul>' : '</ol>';
-            inList = false;
-          }
-          var pText = parseMarkdown(line);
-          formatted += '<p style="margin: 10px 0; line-height: 1.8; color: #bab9b4;">' + pText + '</p>';
-        }
+        if (side === 'back') current.back += ' ' + line;
+        else current.front += ' ' + line;
+      }
+      if (current && current.front && current.back) cards.push(current);
+      return cards;
+    }
+
+    function formatFlashcards(content) {
+      var cards = parseFlashcards(content);
+      if (!cards.length) {
+        return fallbackRender(content, 'No flashcards could be read from this response — showing it as plain notes.');
       }
 
-      if (inList) {
-        formatted += listType === 'ul' ? '</ul>' : '</ol>';
-      }
-      formatted += '</div>';
-      return formatted;
+      var html = '<div class="formatted-output md-body">';
+      html += '<h2 class="md-h">🃏 Flashcards — Click a Card to Flip</h2>';
+      html += '<button class="reveal-btn" onclick="flipAllCards(this)" style="margin-bottom:14px;">🔄 Flip All</button>';
+      html += '<div class="flip-grid">';
+      cards.forEach(function(card, j) {
+        html += '<div class="flip-card" onclick="this.classList.toggle(\'flipped\')">' +
+          '<div class="flip-inner">' +
+            '<div class="flip-face flip-front">' +
+              '<div class="flip-tag">Card ' + (j + 1) + '</div>' +
+              '<div class="flip-text">' + renderInline(card.front) + '</div>' +
+              '<div class="flip-hint">click to flip</div>' +
+            '</div>' +
+            '<div class="flip-face flip-back">' +
+              '<div class="flip-tag">Answer</div>' +
+              '<div class="flip-text">' + renderInline(card.back) + '</div>' +
+            '</div>' +
+          '</div></div>';
+      });
+      html += '</div></div>';
+      return html;
     }
+
+    window.flipAllCards = function(btn) {
+      var cards = document.querySelectorAll('.flip-card');
+      var anyUnflipped = false;
+      Array.prototype.forEach.call(cards, function(c) {
+        if (!c.classList.contains('flipped')) anyUnflipped = true;
+      });
+      Array.prototype.forEach.call(cards, function(c) {
+        c.classList.toggle('flipped', anyUnflipped);
+      });
+      btn.textContent = anyUnflipped ? '🔄 Show Fronts' : '🔄 Flip All';
+    };
 
     // ──────────────────────────────
     //  FORMAT: MINDMAP
     // ──────────────────────────────
     function formatMindmap(content) {
-      var formatted = '<div class="formatted-output" style="background: #0f1419; padding: 20px; border-radius: 12px; font-family: monospace;">';
-      var lines = content.split('\n');
-      var tree = buildMindmapTree(lines);
-      formatted += renderMindmapTree(tree);
-      formatted += '</div>';
-      return formatted;
+      var tree = buildMindmapTree(String(content || '').replace(/\r\n?/g, '\n').split('\n'));
+      if (!tree.children.length) {
+        return fallbackRender(content, 'No mind map structure could be read from this response — showing it as plain notes.');
+      }
+      return '<div class="formatted-output mindmap-body">' + renderMindmapTree(tree) + '</div>';
     }
 
     function buildMindmapTree(lines) {
+      var items = [];
+      lines.forEach(function(raw) {
+        var expanded = raw.replace(/\t/g, '    ');
+        var indent = expanded.search(/\S/);
+        if (indent < 0) return;
+        var text = expanded.trim().replace(/^[-*+•–]\s*/, '').replace(/^#{1,6}\s*/, '').trim();
+        if (!text) return;
+        items.push({ indent: indent, text: text });
+      });
+
+      // Map the indent widths that actually appear onto sequential levels, so
+      // 2-, 3- or 4-space indentation all produce the same tree.
+      var widths = [];
+      items.forEach(function(it) {
+        if (widths.indexOf(it.indent) === -1) widths.push(it.indent);
+      });
+      widths.sort(function(a, b) { return a - b; });
+
       var tree = { level: -1, text: 'root', children: [], id: 'root' };
       var stack = [tree];
       var nodeId = 0;
-
-      lines.forEach(function(line) {
-        var indent = line.search(/\S/);
-        if (indent === -1) return;
-        var text = line.trim();
-        if (!text) return;
-
-        var level = Math.floor(indent / 2);
-        var node = { level: level, text: text.replace(/^[-•*]\s?/, '').trim(), children: [], id: 'node' + (nodeId++) };
-
-        while (stack.length > 1 && stack[stack.length - 1].level >= level) {
-          stack.pop();
-        }
-
+      items.forEach(function(it) {
+        var level = widths.indexOf(it.indent);
+        var node = { level: level, text: it.text, children: [], id: 'node' + (nodeId++) };
+        while (stack.length > 1 && stack[stack.length - 1].level >= level) stack.pop();
         stack[stack.length - 1].children.push(node);
         stack.push(node);
       });
-
       return tree;
     }
 
@@ -1582,36 +2309,35 @@
       var color = colors[node.level + 1] || colors[colors.length - 1];
 
       if (isRoot && node.level === -1) {
-        var html = '<div>';
+        var rootHtml = '<div>';
         node.children.forEach(function(child) {
-          html += renderMindmapTree(child, false);
+          rootHtml += renderMindmapTree(child, false);
         });
-        html += '</div>';
-        return html;
+        return rootHtml + '</div>';
       }
 
       var hasChildren = node.children && node.children.length > 0;
-      var text = parseMarkdown(node.text);
+      var text = renderInline(node.text);
       var size = [1.3, 1.1, 0.95, 0.85, 0.75][Math.min(node.level + 1, 4)];
       var weight = node.level === 0 ? 700 : node.level === 1 ? 600 : node.level === 2 ? 500 : 400;
+      var rgb = hexToRgba(color);
+      // The top two levels start open, so the map is readable without clicking.
+      var open = node.level < 2;
 
-      var html = '<div style="margin: 8px 0; margin-left: ' + ((node.level + 1) * 24) + 'px;">';
-
+      var html = '<div style="margin: 8px 0; margin-left: ' + ((node.level + 1) * 22) + 'px;">';
       if (hasChildren) {
-        html += '<div style="cursor: pointer; padding: 8px 12px; background: linear-gradient(135deg, rgba(' + hexToRgba(color) + ', 0.2) 0%, rgba(' + hexToRgba(color) + ', 0.05) 100%); border-left: 4px solid ' + color + '; border-radius: 6px; margin: 4px 0; font-size: ' + size + 'rem; font-weight: ' + weight + '; color: ' + color + '; display: flex; align-items: center; gap: 8px;" onclick="toggleMindmapBranch(this)">';
-        html += '<span style="display: inline-block; min-width: 20px; text-align: center; transition: transform 0.3s;">▶</span>';
+        html += '<div class="mm-node" style="background: linear-gradient(135deg, rgba(' + rgb + ', 0.2) 0%, rgba(' + rgb + ', 0.05) 100%); border-left: 4px solid ' + color + '; font-size: ' + size + 'rem; font-weight: ' + weight + '; color: ' + color + ';" onclick="toggleMindmapBranch(this)">';
+        html += '<span class="mm-arrow"' + (open ? ' style="transform: rotate(90deg);"' : '') + '>▶</span>';
         html += '<span>' + text + '</span></div>';
-        html += '<div style="display: none;" class="mindmap-branch">';
+        html += '<div class="mindmap-branch" style="display: ' + (open ? 'block' : 'none') + ';">';
         node.children.forEach(function(child) {
           html += renderMindmapTree(child, false);
         });
         html += '</div>';
       } else {
-        html += '<div style="padding: 8px 12px; background: rgba(' + hexToRgba(color) + ', 0.1); border-left: 3px solid ' + color + '; border-radius: 6px; margin: 4px 0; font-size: ' + size + 'rem; font-weight: ' + weight + '; color: ' + color + ';">' + text + '</div>';
+        html += '<div class="mm-leaf" style="background: rgba(' + rgb + ', 0.1); border-left: 3px solid ' + color + '; font-size: ' + size + 'rem; font-weight: ' + weight + '; color: ' + color + ';">' + text + '</div>';
       }
-
-      html += '</div>';
-      return html;
+      return html + '</div>';
     }
 
     function hexToRgba(hex) {
@@ -1621,15 +2347,11 @@
 
     window.toggleMindmapBranch = function(element) {
       var branch = element.nextElementSibling;
-      var arrow = element.querySelector('span:first-child');
+      var arrow = element.querySelector('.mm-arrow');
       if (branch && branch.classList.contains('mindmap-branch')) {
-        if (branch.style.display === 'none') {
-          branch.style.display = 'block';
-          arrow.style.transform = 'rotate(90deg)';
-        } else {
-          branch.style.display = 'none';
-          arrow.style.transform = 'rotate(0deg)';
-        }
+        var hidden = branch.style.display === 'none';
+        branch.style.display = hidden ? 'block' : 'none';
+        arrow.style.transform = hidden ? 'rotate(90deg)' : 'rotate(0deg)';
       }
     };
 
@@ -1637,14 +2359,19 @@
     //  FORMAT DISPATCHER
     // ──────────────────────────────
     function formatContent(type, content) {
-      switch(type) {
-        case 'notes': return formatNotes(content);
-        case 'mcq': return formatMCQ(content);
-        case 'practice': return formatPractice(content);
-        case 'flashcards': return formatFlashcards(content);
-        case 'summary': return formatSummary(content);
-        case 'mindmap': return formatMindmap(content);
-        default: return '<div class="formatted-output"><p>' + parseMarkdown(content) + '</p></div>';
+      try {
+        switch (type) {
+          case 'notes': return formatNotes(content);
+          case 'mcq': return formatMCQ(content);
+          case 'practice': return formatPractice(content);
+          case 'flashcards': return formatFlashcards(content);
+          case 'summary': return formatSummary(content);
+          case 'mindmap': return formatMindmap(content);
+          default: return '<div class="formatted-output md-body">' + renderMarkdown(content) + '</div>';
+        }
+      } catch (e) {
+        // A formatting failure should never cost the user their generated material.
+        return fallbackRender(content, 'Formatting failed (' + e.message + ') — showing the raw response.');
       }
     }
 
@@ -1654,12 +2381,18 @@
         showToast('⚠️ Please enter a topic');
         return;
       }
-      var key = document.getElementById('apiKey').value.trim();
+      var provider = document.getElementById('apiProvider').value;
+      var key = cleanKey(document.getElementById('apiKey').value);
       if (!key) {
         showToast('⚠️ Please paste your API key');
         return;
       }
-      var provider = document.getElementById('apiProvider').value;
+      var shapeWarning = checkKeyShape(provider, key);
+      if (shapeWarning) {
+        showToast(shapeWarning);
+        return;
+      }
+      saveKey(provider, key);
       var subject = document.getElementById('subject').value;
       var grade = document.getElementById('grade').value;
       var loader = document.getElementById('loader');
@@ -1691,9 +2424,11 @@
       if (existing) existing.remove();
 
       var tips = '';
-      if (message.indexOf('tokens per minute') !== -1 || message.indexOf('rate') !== -1 || message.indexOf('429') !== -1) {
+      if (message.indexOf('no longer available') !== -1) {
+        tips = '<p style="color: #fbbf24; margin-top: 10px;">💡 <strong>Tip:</strong> This is a model problem, not a key problem. The provider retired the model this app asks for — edit the <code>MODELS</code> object near the top of the script and pick a current model ID.</p>';
+      } else if (message.indexOf('tokens per minute') !== -1 || message.indexOf('rate') !== -1 || message.indexOf('429') !== -1) {
         tips = '<p style="color: #fbbf24; margin-top: 10px;">💡 <strong>Tip:</strong> Groq free tier has a low token limit. Wait 60 seconds and try again, or switch to <strong>Gemini</strong> which has a much more generous free tier.</p>';
-      } else if (message.indexOf('401') !== -1 || message.indexOf('invalid') !== -1 || message.indexOf('Incorrect') !== -1) {
+      } else if (message.indexOf('401') !== -1 || message.indexOf('403') !== -1 || message.indexOf('Invalid or unauthorized') !== -1 || message.indexOf('Incorrect') !== -1) {
         tips = '<p style="color: #fbbf24; margin-top: 10px;">💡 <strong>Tip:</strong> Your API key appears to be invalid. Double-check that you copied the full key from your ' + provider + ' dashboard.</p>';
       } else if (message.indexOf('Network') !== -1 || message.indexOf('fetch') !== -1) {
         tips = '<p style="color: #fbbf24; margin-top: 10px;">💡 <strong>Tip:</strong> Check your internet connection and try again.</p>';
@@ -1722,14 +2457,11 @@
       outputDiv.style.display = 'none';
       outputDiv.textContent = content;
 
-      // Show formatted content
-      if (!resultCard.querySelector('.formatted-output')) {
-        var formattedDiv = document.createElement('div');
-        formattedDiv.id = 'formattedOutput';
-        resultCard.appendChild(formattedDiv);
-      }
-
-      document.getElementById('formattedOutput').innerHTML = formatContent(type, content);
+      // The container already exists in the markup; the old code appended a
+      // second element carrying the same id on the first render.
+      var target = document.getElementById('formattedOutput');
+      target.innerHTML = formatContent(type, content);
+      target.scrollTop = 0;
       resultCard.style.display = 'block';
       renderHistTabs();
     }
@@ -1799,13 +2531,15 @@
     function downloadOutput() {
       var text = document.getElementById('outputContent').textContent;
       var blob = new Blob([text], {
-        type: 'text/plain'
+        type: 'text/markdown'
       });
       var url = URL.createObjectURL(blob);
       var a = document.createElement('a');
       a.href = url;
-      a.download = 'StudyForAll-' + contentType + '-' + new Date().toISOString().slice(0, 10) + '.txt';
+      a.download = 'StudyForAll-' + contentType + '-' + new Date().toISOString().slice(0, 10) + '.md';
+      document.body.appendChild(a);
       a.click();
+      document.body.removeChild(a);
       URL.revokeObjectURL(url);
       showToast('⬇️ Downloaded successfully!');
     }
